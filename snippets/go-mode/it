@@ -1,0 +1,8 @@
+ -*- mode: snippet -*-
+# name: ginkgo it
+# key: it
+# contributor : @mjf
+# --
+It("$1", func() {
+        $0
+})

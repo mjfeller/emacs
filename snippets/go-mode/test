@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: test
+# key: test
+# contributor : @atotto
+# --
+func Test$1(t *testing.T) {
+	g := NewGomegaWithT(t)
+    $0
+}

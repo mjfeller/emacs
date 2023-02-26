@@ -1,0 +1,30 @@
+Installation
+
+To install, clone this repo to ~/.emacs.d.
+
+    git clone https://gitlab.com/mark.feller/emacs.d ~/.emacs.d
+
+Upon starting up Emacs for the first time, packages will be downloaded
+and installed via the public repos. If you encounter any errors at that
+stage, try restarting Emacs, and possibly running 'M-x
+package-refresh-contents' before doing so. After successfully installing
+packages future startups will be much faster.
+
+There are several subdirectories:
+
+'core'        holds primary configuration that I feel lost without.
+'lisp'        holds custom user lisp code. Useful for site packages,
+              personal information, etc.
+'modules'     holds package/language specific configuration that is
+              useful when working with specific tasks or within specific
+              languages, but are not needed generally.
+'src'         holds the Emacs source directory for jumping to definition
+              and viewing docs within the C code.
+'snippets'    holds Yasnippet snippets.
+'theme'       holds theme packages. Poet is my current goto.
+
+Disclaimer
+
+This is an everchanging and evolving Emacs configuration for my personal
+use. I see this repo more as a collection of ideas to be incorporated
+into your own configurations.

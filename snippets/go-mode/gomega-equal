@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: gomega equals
+# key: eq
+# contributor : @mjf
+# --
+Expect($1).To(Equal($0))

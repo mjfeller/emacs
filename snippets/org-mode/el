@@ -1,0 +1,7 @@
+# -*- mode: org -*-
+# name: emacs-lisp
+# key: el
+# --
+#+begin_src emacs-lisp :tangle ${1:yes}
+  $2
+#+end_src
