@@ -27,7 +27,6 @@
   (add-to-list 'evil-emacs-state-modes 'vterm-mode)
   (add-to-list 'evil-emacs-state-modes 'compilation-mode))
 
-
 (if (eq system-type 'darwin)
 
     ;; macos
