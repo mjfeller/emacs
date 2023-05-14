@@ -20,7 +20,6 @@ There are several subdirectories:
               languages, but are not needed generally.
 'src'         holds the Emacs source directory for jumping to definition
               and viewing docs within the C code.
-'snippets'    holds Yasnippet snippets.
 
 Disclaimer
 

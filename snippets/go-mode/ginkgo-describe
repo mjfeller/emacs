@@ -1,8 +1,0 @@
-# -*- mode: snippet -*-
-# name: ginkgo-describe
-# key: gd
-# contributor : @mjf
-# --
-var _ = Describe("$1", func() {
-	$0
-})

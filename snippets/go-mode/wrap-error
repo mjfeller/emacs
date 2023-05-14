@@ -1,8 +1,0 @@
-# -*- mode: snippet -*-
-# name: wraperror
-# key: werr
-# contributor : @mjf
-# --
-if err != nil {
-   return errors.Wrap(err, "$0")
-}

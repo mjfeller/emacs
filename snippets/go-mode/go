@@ -1,8 +1,0 @@
-# -*- mode: snippet -*-
-# name: go routine
-# key: go
-# contributor : @mjf
-# --
-go func($1) {
-	$0
-}($2)

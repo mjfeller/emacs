@@ -1,7 +1,0 @@
-# -*- mode: org -*-
-# name: shell
-# key: sh
-# --
-#+begin_src zsh
-  $0
-#+end_src

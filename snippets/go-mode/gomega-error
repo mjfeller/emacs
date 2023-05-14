@@ -1,6 +1,0 @@
-# -*- mode: snippet -*-
-# name: gomega
-# key: gerr
-# contributor : @mjf
-# --
-Expect(err).ToNot(HaveOccurred())
