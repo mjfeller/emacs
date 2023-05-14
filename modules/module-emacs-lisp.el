@@ -25,10 +25,6 @@
   :disabled
   :init (add-hook 'emacs-lisp-mode-hook 'paredit-mode))
 
-(use-package lispy
-  :config
-  (add-hook 'emacs-lisp-mode 'lispy-mode))
-
 (use-package paren-face
   :config
   (progn (global-paren-face-mode t)
