@@ -112,7 +112,6 @@
 (require 'module-rust)
 (require 'module-vterm)
 (require 'module-yaml)
-(require 'module-yasnippet)
 
 ;; load any custom user provided locals
 (require 'init-local nil t)
