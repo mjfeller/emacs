@@ -32,10 +32,10 @@
   (setq evil-echo-state nil)
   (setq evil-esc-delay 0)
 
-(add-to-list 'evil-emacs-state-modes 'sly-inspector-mode)
-(add-to-list 'evil-emacs-state-modes 'sly-mrepl-mode)
-(add-to-list 'evil-emacs-state-modes 'sly-db-mode)
-(add-to-list 'evil-emacs-state-modes 'compilation-mode)
+  (add-to-list 'evil-emacs-state-modes 'sly-inspector-mode)
+  (add-to-list 'evil-emacs-state-modes 'sly-mrepl-mode)
+  (add-to-list 'evil-emacs-state-modes 'sly-db-mode)
+  (add-to-list 'evil-emacs-state-modes 'compilation-mode)
 
   (evil-mode t))
 
