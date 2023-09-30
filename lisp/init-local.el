@@ -1,6 +1,4 @@
 (when (eq system-type 'darwin)
-  (resize-small)
-  (mjf/center-window)
   (exec-path-from-shell-initialize))
 
 (mjf/initialize-personal-email)
