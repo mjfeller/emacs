@@ -69,10 +69,6 @@
   (setq interprogram-cut-function 'bw/paste-to-osx)
   (setq interprogram-paste-function 'bw/copy-from-osx))
 
-(defun mjf/center-window ()
-  (interactive)
-  (call-process-shell-command "osascript ~/.config/emacs/scripts/Center-Window.scpt" nil 0))
-
 (provide 'core-macos)
 
 ;;; core-osx.el ends here
