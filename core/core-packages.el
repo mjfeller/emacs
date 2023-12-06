@@ -87,6 +87,7 @@
   (column-number-mode t)                ; column numbers in mode line
   (delete-selection-mode t)             ; delete marked regions
   (show-paren-mode t)                   ; show matching parenthesis
+  (pixel-scroll-precision-mode t)
 
   (set-frame-parameter nil 'internal-border-width 0)
   (set-fringe-mode 10)
