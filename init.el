@@ -100,6 +100,7 @@
 (require 'module-multiple-cursors)
 (require 'module-notmuch)
 (require 'module-org)
+(require 'module-osm)
 (require 'module-restclient)
 (require 'module-rust)
 (require 'module-vterm)
