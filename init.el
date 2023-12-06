@@ -29,8 +29,6 @@
   (getenv
    (if (equal system-type 'windows-nt) "USERNAME" "USER")))
 
-(message "Powering up... Be patient, Master %s!" current-user)
-
 (when (version< emacs-version "24.4")
   (error "Requires at least GNU Emacs 24.4, but you're running %s" emacs-version))
 
@@ -108,7 +106,5 @@
 
 ;; load any custom user provided locals
 (require 'init-local nil t)
-
-(message "Ready to do thy bidding, Master %s!" current-user)
 
 ;;; init.el ends here

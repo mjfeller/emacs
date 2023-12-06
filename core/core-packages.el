@@ -77,7 +77,6 @@
 
   :config
   (fset 'yes-or-no-p 'y-or-n-p)         ; enable y/n answers
-  (tool-bar-mode 0)                     ; disable the tool bar
   (scroll-bar-mode 0)                   ; disable the scroll bar
   (menu-bar-mode 0)                     ; disable the menu bar
   (blink-cursor-mode 0)                 ; the blinking cursor is nothing but an annoyance
@@ -88,9 +87,6 @@
   (delete-selection-mode t)             ; delete marked regions
   (show-paren-mode t)                   ; show matching parenthesis
   (pixel-scroll-precision-mode t)
-
-  (set-frame-parameter nil 'internal-border-width 0)
-  (set-fringe-mode 10)
 
   (set-terminal-coding-system 'utf-8)
   (set-keyboard-coding-system 'utf-8)

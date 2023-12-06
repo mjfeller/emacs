@@ -26,7 +26,6 @@
 
 (require 'package)
 
-(setq package-user-dir "~/.cache/elpa")
 (setq package-archives
       '(("melpa-stable" . "https://stable.melpa.org/packages/")
         ("melpa"        . "https://melpa.org/packages/")
@@ -34,12 +33,6 @@
         ("org"          . "http://orgmode.org/elpa/")))
 
 (package-initialize)
-
-;; ;; bootstrap use-package
-;; (unless (package-installed-p 'use-package)
-;;   (package-refresh-contents)
-;;   (package-install 'use-package)
-;;   (package-install 'bind-key))
 
 (require 'use-package)
 (setq use-package-always-ensure t)
