@@ -239,6 +239,24 @@
     (setq window-management-prefix "H")
   (setq window-management-prefix "s"))
 
+(use-package workgroups
+  :config
+  (setq wg-file "~/.cache/workgroups")
+  (setq wg-prefix-key (kbd "C-c w"))
+  (wg-load wg-file)
+  (workgroups-mode 1)
+
+  (bind-keys ((concat window-management-prefix "-1") . wg-switch-to-index-1)
+             ((concat window-management-prefix "-2") . wg-switch-to-index-2)
+             ((concat window-management-prefix "-3") . wg-switch-to-index-3)
+             ((concat window-management-prefix "-4") . wg-switch-to-index-4)
+             ((concat window-management-prefix "-5") . wg-switch-to-index-5)
+             ((concat window-management-prefix "-6") . wg-switch-to-index-6)
+             ((concat window-management-prefix "-7") . wg-switch-to-index-7)
+             ((concat window-management-prefix "-8") . wg-switch-to-index-8)
+             ((concat window-management-prefix "-9") . wg-switch-to-index-9)
+             ((concat window-management-prefix "-0") . wg-switch-to-index-0)))
+
 (bind-keys
  ((concat window-management-prefix "-e") . windmove-up)
  ((concat window-management-prefix "-d") . windmove-down)
