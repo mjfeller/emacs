@@ -226,6 +226,13 @@ is already narrowed."
 
 (bind-keys ("M-P" . mjf/pash-copy))
 
+(defun ip-info (start end)
+  (interactive "r")
+  (let ((subnet (buffer-substring start end)))
+    (async-shell-command
+     (format "nix run 'nixpkgs#ipcalc' -- -i %s" subnet)
+     (format "*ip info %s*" subnet))))
+
 (provide 'core-defuns)
 
 ;;; core-defuns.el ends here
