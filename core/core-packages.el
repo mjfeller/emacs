@@ -96,6 +96,9 @@
   (set-keyboard-coding-system 'utf-8)
   (prefer-coding-system 'utf-8)
 
+  (ediff-split-window-function 'split-window-horizontally)
+  (ediff-window-setup-function 'ediff-setup-windows-plain)
+
   :hook
   (before-save-hook . delete-tailing-whitespace)
   (window-setup-hook . on-after-init))
