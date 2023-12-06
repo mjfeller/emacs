@@ -69,6 +69,10 @@
   (setq interprogram-cut-function 'bw/paste-to-osx)
   (setq interprogram-paste-function 'bw/copy-from-osx))
 
+(setq Info-directory-list
+      (append '("/opt/homebrew/share/info" "/opt/homebrew/share/info/emacs")
+              Info-directory-list))
+
 (provide 'core-macos)
 
 ;;; core-osx.el ends here
