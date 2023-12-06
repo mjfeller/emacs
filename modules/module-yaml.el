@@ -21,7 +21,8 @@
 
 ;;; Code:
 
-(use-package yaml-mode)
+(use-package yaml-mode
+  :mode "\\.yaml.template\\'")
 
 (provide 'module-yaml)
 
