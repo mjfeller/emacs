@@ -72,6 +72,9 @@
   (nsm-settings-file                  "~/.cache/network-security.data")
   (url-configuration-directory        "~/.cache/url/")
 
+  (ediff-split-window-function 'split-window-horizontally)
+  (ediff-window-setup-function 'ediff-setup-windows-plain)
+
   :config
   (set-frame-font "Iosevka Comfy Wide Motion 10" nil t)
 
@@ -90,9 +93,6 @@
   (set-terminal-coding-system 'utf-8)
   (set-keyboard-coding-system 'utf-8)
   (prefer-coding-system 'utf-8)
-
-  (ediff-split-window-function 'split-window-horizontally)
-  (ediff-window-setup-function 'ediff-setup-windows-plain)
 
   :hook
   (before-save-hook . delete-tailing-whitespace)
