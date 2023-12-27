@@ -124,6 +124,7 @@
 
   (with-eval-after-load 'eglot
     (add-to-list 'eglot-server-programs
+                 '(nix-mode . ("nil"))
                  '(java-mode . ("java-language-server")))))
 
 (use-package company
