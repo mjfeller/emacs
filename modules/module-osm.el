@@ -22,8 +22,14 @@
 ;;; Code:
 
 (use-package osm
+  :bind ("C-c m" . osm-prefix-map)
+
   :custom
-  (osm-tile-directory "~/.cache/osm/"))
+  (osm-server 'default)
+  (osm-copyright t)
+  (osm-max-tiles 25600)
+  (osm-home '(40 -105 10))
+  (osm-tile-directory "~/.cache/osm"))
 
 (provide 'module-osm)
 
