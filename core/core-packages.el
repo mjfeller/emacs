@@ -73,6 +73,8 @@
   (url-configuration-directory        "~/.cache/url/")
 
   :config
+  (set-frame-font "Iosevka Comfy Wide Motion 10" nil t)
+
   (fset 'yes-or-no-p 'y-or-n-p)         ; enable y/n answers
   (scroll-bar-mode 0)                   ; disable the scroll bar
   (menu-bar-mode 0)                     ; disable the menu bar
