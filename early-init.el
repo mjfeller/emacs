@@ -57,4 +57,6 @@
                             (ns-appearance . dark)
                             (ns-transparent-titlebar . t)))
 
+(setq shell-file-name "zsh")
+
 ;;; early-init.el ends here
