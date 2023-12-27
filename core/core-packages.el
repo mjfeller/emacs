@@ -50,9 +50,6 @@
   (display-line-numbers-current-absolute t)
   (display-line-numbers-widen nil)      ; don't count narrowed regions
 
-  ;; supress native comp popup buffer
-  (native-comp-async-report-warnings-errors nil)
-
   ;; save place improvements
   (save-place-file "~/.cache/places")
   (backup-by-copying t)
