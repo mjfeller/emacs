@@ -52,7 +52,14 @@
 
   ;; personal capture templates
   (setq org-capture-templates
-        '(
+        '(("n" "New note (with Denote)" plain
+           (file denote-last-path)
+           #'denote-org-capture
+           :no-save t
+           :immediate-finish nil
+           :kill-buffer t
+           :jump-to-captured t)
+
           ;; unfiled work items
           ("w" "Work" entry (file+headline mjf/org-work-file "Unread")
            "* TODO %?\n  %i\n")
