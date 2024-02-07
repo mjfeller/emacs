@@ -228,6 +228,10 @@
 
 (use-package olivetti)
 
+(use-package spacious-padding-mode
+  :config
+  (spacious-padding-mode t)
+
 (use-package logos
   :bind (("C-x n" . logos-narrow-dwim)
          ("C-x [" . logos-backward-page-dwim)
