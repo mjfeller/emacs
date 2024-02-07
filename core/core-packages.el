@@ -229,8 +229,11 @@
 (use-package olivetti)
 
 (use-package spacious-padding-mode
+  :custom
+  (spacious-padding-subtle-mode-line '(:mode-line-active shadow
+                                       :mode-line-inactive vertical-border))
   :config
-  (spacious-padding-mode t)
+  (spacious-padding-mode t))
 
 (use-package logos
   :bind (("C-x n" . logos-narrow-dwim)
