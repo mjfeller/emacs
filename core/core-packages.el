@@ -96,7 +96,10 @@
 
   :hook
   (before-save-hook . delete-tailing-whitespace)
-  (window-setup-hook . on-after-init))
+  (window-setup-hook . on-after-init)
+
+  :bind
+  ("H-l" . display-line-numbers-mode))
 
 (use-package project
   :custom
