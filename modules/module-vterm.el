@@ -22,7 +22,8 @@
 ;;; Code:
 
 (use-package vterm
-  :bind (:map vterm-mode-map ("M-P" . mjf/pash-copy))
+  :bind (("H-U" . vterm-other-window)
+         (:map vterm-mode-map ("M-P" . mjf/pash-copy))
   :config
   (add-to-list 'evil-emacs-state-modes 'vterm-mode)
   (add-to-list 'evil-emacs-state-modes 'compilation-mode))
