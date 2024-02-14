@@ -36,6 +36,7 @@
   (add-to-list 'evil-emacs-state-modes 'sly-mrepl-mode)
   (add-to-list 'evil-emacs-state-modes 'sly-db-mode)
   (add-to-list 'evil-emacs-state-modes 'compilation-mode)
+  (add-to-list 'evil-emacs-state-modes 'grep-mode)
 
   (evil-mode t))
 
