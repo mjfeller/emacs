@@ -101,6 +101,7 @@
   :bind
   ("H-l" . display-line-numbers-mode))
 
+
 (use-package project
   :custom
   (project-list-file "~/.cache/emacs-projects.el"))
@@ -214,7 +215,22 @@
          ("C-s"       . consult-line)
          ("C-c r l"   . consult-register-load)
          ("C-c r s"   . consult-register-store)
-         ("C-c C p"   . consult-yank-from-kill-ring)))
+         ("C-c C p"   . consult-yank-from-kill-ring)
+
+         ("M-s M-f"   . consult-find)
+         ("M-K"       . consult-keep-lines)
+         ("M-F"       . consult-focus-lines)
+         ("M-g M-g"   . consult-goto-line)
+         ("M-s M-g"   . consult-git-grep)
+         ("M-s M-b"   . consult-buffer)
+         ("M-s M-i"   . consult-imenu)
+         ("M-s M-m"   . consult-mark)
+         ("M-s M-s"   . consult-outline)
+         ("M-s M-h"   . consult-history)
+         ("M-s M-y"   . consult-yank-pop))
+
+  :config
+  (require 'consult-imenu))
 
 (use-package embark
   :bind (("C-."   . embark-act)       ;; pick some comfortable binding
@@ -228,7 +244,7 @@
 
 (use-package olivetti)
 
-(use-package spacious-padding-mode
+(use-package spacious-padding
   :custom
   (spacious-padding-subtle-mode-line '(:mode-line-active shadow
                                        :mode-line-inactive vertical-border))
@@ -264,16 +280,17 @@
              ((concat window-management-prefix "-0") . wg-switch-to-index-0)))
 
 (bind-keys
+ ;; Window Switching
  ((concat window-management-prefix "-e") . windmove-up)
  ((concat window-management-prefix "-d") . windmove-down)
  ((concat window-management-prefix "-f") . windmove-right)
  ((concat window-management-prefix "-s") . windmove-left)
 
- ;; Window Resizing
- ((concat window-management-prefix "-E") . enlarge-window)
- ((concat window-management-prefix "-D") . shrink-window)
- ((concat window-management-prefix "-F") . enlarge-window-horizontally)
- ((concat window-management-prefix "-S") . shrink-window-horizontally)
+ ;; Window Moving
+ ((concat window-management-prefix "-E") . windmove-swap-states-up)
+ ((concat window-management-prefix "-D") . windmove-swap-states-down)
+ ((concat window-management-prefix "-F") . windmove-swap-states-right)
+ ((concat window-management-prefix "-S") . windmove-swap-states-left)
 
  ;; Window Splitting
  ((concat window-management-prefix "-v") . split-window-vertically)
@@ -286,7 +303,6 @@
  ((concat window-management-prefix "-t") . toggle-window-split)
  ((concat window-management-prefix "-<return>") . toggle-fullscreen)
 
- ((concat window-management-prefix "-c") . mjf/center-window)
  ((concat window-management-prefix "-W") . mjf/focused)
  ((concat window-management-prefix "-n") . narrow-or-widen-dwim))
 
