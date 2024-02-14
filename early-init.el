@@ -59,4 +59,29 @@
 
 (setq shell-file-name "zsh")
 
+(add-to-list 'load-path "~/.config/emacs/lisp")
+
+(require 'prot-modeline)
+
+;;; Mode line
+(setq mode-line-compact nil) ; Emacs 28
+(setq mode-line-right-align-edge 'right-margin) ; Emacs 30
+(setq-default mode-line-format
+              '("%e"
+                prot-modeline-kbd-macro
+                prot-modeline-narrow
+                prot-modeline-buffer-status
+                prot-modeline-input-method
+                prot-modeline-evil
+                prot-modeline-buffer-identification
+                "  "
+                prot-modeline-major-mode
+                prot-modeline-process
+                "  "
+                prot-modeline-vc-branch
+                "  "
+                prot-modeline-kube-context
+                "  "
+                prot-modeline-eglot))
+
 ;;; early-init.el ends here
