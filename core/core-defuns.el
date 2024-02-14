@@ -216,13 +216,17 @@ is already narrowed."
 (defun gh-browse ()
   (interactive)
   (shell-command
-   (format "gh browse %s:%s"
+   (concat "gh browse "
            (file-name-nondirectory (buffer-file-name))
            (if mark-active
-               (format "%s-%s"
+               (format ":%s-%s"
                        (line-number-at-pos (region-beginning))
-                       (line-number-at-pos (region-end)))
-             (line-number-at-pos)))))
+                       (let ((end (region-end)))
+                         (if (and (> end (point-min))
+                                  (eq (char-before end) ?\n))
+                             (1- (line-number-at-pos end))
+                           (line-number-at-pos end))))
+             ""))))
 
 (bind-keys ("M-P" . mjf/pash-copy))
 
