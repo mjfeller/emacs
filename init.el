@@ -85,7 +85,6 @@
 (message "Loading modules...")
 
 (require 'module-c)
-(require 'module-company)
 (require 'module-docker)
 (require 'module-eldoc)
 (require 'module-emacs-lisp)
@@ -93,16 +92,13 @@
 (require 'module-git)
 (require 'module-go)
 (require 'module-ledger)
-(require 'module-multiple-cursors)
 (require 'module-notmuch)
 (require 'module-org)
 (require 'module-osm)
-(require 'module-restclient)
-(require 'module-rust)
 (require 'module-vterm)
 (require 'module-yaml)
 
 ;; load any custom user provided locals
-(require 'init-local nil t)
+(require 'init-local)
 
 ;;; init.el ends here
