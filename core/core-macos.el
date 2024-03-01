@@ -38,12 +38,8 @@
     (set-fontset-font t 'unicode "Apple Color Emoji" nil 'prepend))
 
 (use-package exec-path-from-shell
-  :demand
-  :config
-  (exec-path-from-shell-initialize)
-  (exec-path-from-shell-copy-env "GNUPGHOME")
-  (exec-path-from-shell-copy-env "NOTMUCH_CONFIG")
-  (exec-path-from-shell-copy-env "XDG_DOCUMENTS_DIR"))
+  :custom
+  (exec-path-from-shell-arguments nil))
 
 (defun finder ()
   "Opens file directory in Finder."

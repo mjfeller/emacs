@@ -1,4 +1,6 @@
 (when (eq system-type 'darwin)
+  (dolist (var '("GNUPGHOME" "NOTMUCH_CONFIG" "XDG_DOCUMENTS_DIR"))
+    (add-to-list 'exec-path-from-shell-variables var))
   (exec-path-from-shell-initialize))
 
 (mjf/initialize-personal-email)
