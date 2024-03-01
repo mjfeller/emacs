@@ -103,10 +103,18 @@
   :bind
   ("H-l" . display-line-numbers-mode))
 
-
 (use-package project
+  :bind (("C-x p g" . consult-ripgrep)
+         ("C-x p b" . consult-project-buffer)
+         ("C-x p m" . magit-project-status))
+
   :custom
-  (project-list-file "~/.cache/emacs-projects.el"))
+  (project-list-file "~/.cache/emacs-projects.el")
+  (project-switch-commands '((project-find-file    "Find file"      "f")
+                             (project-find-dir     "Find directory" "d")
+                             (consult-ripgrep      "Find regexp"    "g")
+                             (project-kill-buffers "Kill buffers"   "k")
+                             (magit-project-status "Magit"          "m"))))
 
 (use-package modus-themes
   :config
@@ -115,7 +123,9 @@
 (use-package tree-sitter
   :config
   (global-tree-sitter-mode)
-  (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode))
+
+  :hook
+  (tree-sitter-after-on-hook . tree-sitter-hl-mode))
 
 (use-package eglot
   :bind (:map eglot-mode-map
@@ -125,6 +135,7 @@
               ("C-c C-J" . xref-show-definitions-function)
               ("M-."     . xref-show-definitions-function)
               ("M-,"     . xref-go-back))
+
   :config
   (add-to-list 'eglot-stay-out-of 'flymake)
 
@@ -143,13 +154,6 @@
   (setq company-begin-commands '(self-insert-command))
 
   (global-company-mode))
-
-(use-package minions
-  :custom
-  (minions-mode-line-lighter ";")
-
-  :config
-  (minions-mode t))
 
 (use-package comment-dwim-2
   :bind (("M-;" . comment-dwim-2)))
@@ -174,13 +178,6 @@
       (after dired-after-updating-hook first () activate)
     "Sort dired listings with directories first before adding marks."
     (dired-sort-dir-first)))
-
-(use-package dired-subtree
-  :after dired
-  :bind (:map dired-mode-map
-              ("<tab>" . dired-subtree-toggle)
-              ("C-<tab>" . dired-subtree-cycle)
-              ("<backtab>" . dired-subtree-remove)))
 
 (use-package helpful
   :bind (("C-h f" . helpful-function)
@@ -208,16 +205,8 @@
   (vertico-mode t))
 
 (use-package consult
-  :bind (("C-c p s r" . consult-git-grep)
-         ("C-c p r r" . consult-ripgrep)
-         ("C-c C b"   . consult-buffer)
-         ("C-c C m"   . consult-man)
-         ("C-c C f"   . consult-imenu)
-         ("C-c C t"   . consult-theme)
-         ("C-s"       . consult-line)
-         ("C-c r l"   . consult-register-load)
+  :bind (("C-c r l"   . consult-register-load)
          ("C-c r s"   . consult-register-store)
-         ("C-c C p"   . consult-yank-from-kill-ring)
 
          ("M-s M-f"   . consult-find)
          ("M-K"       . consult-keep-lines)
@@ -226,6 +215,7 @@
          ("M-s M-g"   . consult-git-grep)
          ("M-s M-b"   . consult-buffer)
          ("M-s M-i"   . consult-imenu)
+         ("M-s M-l"   . consult-line)
          ("M-s M-m"   . consult-mark)
          ("M-s M-s"   . consult-outline)
          ("M-s M-h"   . consult-history)
@@ -253,33 +243,10 @@
   :config
   (spacious-padding-mode t))
 
-(use-package logos
-  :bind (("C-x n" . logos-narrow-dwim)
-         ("C-x [" . logos-backward-page-dwim)
-         ("C-x ]" . logos-forward-page-dwim)))
-
 ;; window management
 (if (eq system-type 'darwin)
     (setq window-management-prefix "H")
   (setq window-management-prefix "s"))
-
-(use-package workgroups
-  :config
-  (setq wg-file "~/.cache/workgroups")
-  (setq wg-prefix-key (kbd "C-c w"))
-  (wg-load wg-file)
-  (workgroups-mode 1)
-
-  (bind-keys ((concat window-management-prefix "-1") . wg-switch-to-index-1)
-             ((concat window-management-prefix "-2") . wg-switch-to-index-2)
-             ((concat window-management-prefix "-3") . wg-switch-to-index-3)
-             ((concat window-management-prefix "-4") . wg-switch-to-index-4)
-             ((concat window-management-prefix "-5") . wg-switch-to-index-5)
-             ((concat window-management-prefix "-6") . wg-switch-to-index-6)
-             ((concat window-management-prefix "-7") . wg-switch-to-index-7)
-             ((concat window-management-prefix "-8") . wg-switch-to-index-8)
-             ((concat window-management-prefix "-9") . wg-switch-to-index-9)
-             ((concat window-management-prefix "-0") . wg-switch-to-index-0)))
 
 (bind-keys
  ;; Window Switching
