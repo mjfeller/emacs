@@ -21,27 +21,13 @@
 
 ;;; Code:
 
-(defun mjf/magit-status-with-prefix ()
-  (interactive)
-  (let ((current-prefix-arg '(4)))
-    (call-interactively 'magit-status)))
-
 (use-package magit
-  :bind (("C-x g" . magit-status)
-         ("C-x G" . mjf/magit-status-with-prefix))
+  :bind (("C-x g" . magit-status))
   :init
   (setq transient-history-file "~/.cache/transient/history.el")
   (setq transient-display-buffer-action '(display-buffer-below-selected))
   (setq transient-mode-line-format
         '("%e" mode-line-front-space mode-line-buffer-identification)))
-
-(use-package magithub
-  :disabled
-  :after magit
-  :config
-  (magithub-feature-autoinject t)
-  (setq magithub-api-timeout 5)
-  (setq magithub-dir "~/.cache/magithub"))
 
 (use-package git-timemachine)
 
