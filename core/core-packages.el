@@ -58,18 +58,21 @@
   (kept-old-versions 2)
   (version-control t)
 
+  (isearch-lazy-count t)
+  (search-whitespace-regexp ".*?")
+
   (backup-directory-alist `((".*" . ,temporary-file-directory)))
   (auto-save-file-name-transforms `((".*" ,temporary-file-directory t)))
 
   (auto-save-list-file-prefix         "~/.cache/auto-save-list/.saves-")
-  (bookmark-default-file              "~/.cache/bookmarks.el")
+  (bookmark-default-file              "~/.cache/emacs-bookmarks.el")
   (ede-project-placeholder-cache-file "~/.cache/ede-projects.el")
   (semanticdb-default-save-directory  "~/.cache/semanticdb")
   (abbrev-file-name                   "~/.cache/abbrev_defs.el")
   (tramp-persistency-file-name        "~/.cache/tramp.el")
   (recentf-save-file                  "~/.cache/recentf")
   (org-id-locations-file              "~/.cache/org-id-locations.el")
-  (nsm-settings-file                  "~/.cache/network-security.data")
+  (nsm-settings-file                  "~/.cache/emacs-network-security.el")
   (url-configuration-directory        "~/.cache/url/")
 
   (ediff-split-window-function 'split-window-horizontally)
@@ -78,7 +81,7 @@
   :config
   (set-frame-font "Iosevka Comfy Wide Motion 10" nil t)
 
-  (fset 'yes-or-no-p 'y-or-n-p)         ; enable y/n answers
+  (setopt use-short-answers t)          ; enable y/n answers
   (scroll-bar-mode 0)                   ; disable the scroll bar
   (menu-bar-mode 0)                     ; disable the menu bar
   (blink-cursor-mode 0)                 ; the blinking cursor is nothing but an annoyance
@@ -88,7 +91,6 @@
   (column-number-mode t)                ; column numbers in mode line
   (delete-selection-mode t)             ; delete marked regions
   (show-paren-mode t)                   ; show matching parenthesis
-  (pixel-scroll-precision-mode t)
 
   (set-terminal-coding-system 'utf-8)
   (set-keyboard-coding-system 'utf-8)
