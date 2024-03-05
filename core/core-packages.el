@@ -100,8 +100,33 @@
   (before-save-hook . delete-tailing-whitespace)
   (window-setup-hook . on-after-init)
 
-  :bind
-  ("H-l" . display-line-numbers-mode))
+  :bind (("s-l" . display-line-numbers-mode)
+
+         ;; Window Switching
+         ("s-e" . windmove-up)
+         ("s-d" . windmove-down)
+         ("s-f" . windmove-right)
+         ("s-s" . windmove-left)
+
+         ;; Window Moving
+         ("s-E" . windmove-swap-states-up)
+         ("s-D" . windmove-swap-states-down)
+         ("s-F" . windmove-swap-states-right)
+         ("s-S" . windmove-swap-states-left)
+
+         ;; Window Splitting
+         ("s-v" . split-window-vertically)
+         ("s-r" . split-window-horizontally)
+         ("s-w" . delete-window)
+         ("s-q" . delete-other-windows)
+
+         ;; Misc Window Commands
+         ("s-a" . balance-windows)
+         ("s-t" . toggle-window-split)
+         ("s-<return>" . toggle-fullscreen)
+
+         ("s-W" . mjf/focused)
+         ("s-n" . narrow-or-widen-dwim)))
 
 (use-package project
   :bind (("C-x p g" . consult-ripgrep)
@@ -129,20 +154,17 @@
 
 (use-package eglot
   :bind (:map eglot-mode-map
-              ("C-c r"   . eglot-rename)
-              ("C-c o"   . eglot-code-action-organize-imports)
-              ("C-c h"   . eldoc)
-              ("C-c C-J" . xref-show-definitions-function)
-              ("M-."     . xref-show-definitions-function)
-              ("M-,"     . xref-go-back))
+              ("C-c r" . eglot-rename)
+              ("C-c o" . eglot-code-action-organize-imports)
+              ("C-c h" . eldoc)
+              ("M-."   . xref-show-definitions-function)
+              ("M-,"   . xref-go-back))
 
   :config
   (add-to-list 'eglot-stay-out-of 'flymake)
-
-  (with-eval-after-load 'eglot
-    (add-to-list 'eglot-server-programs
-                 '(nix-mode . ("nil"))
-                 '(java-mode . ("java-language-server")))))
+  (add-to-list 'eglot-server-programs
+               '(nix-mode . ("nil"))
+               '(java-mode . ("java-language-server"))))
 
 (use-package company
   :demand
@@ -161,6 +183,7 @@
 (use-package dired
   :ensure nil
   :bind (("C-x C-j" . dired-jump))
+
   :custom
   (wdired-use-dired-vertical-movement 'sometimes)
   (dired-listing-switches "-la")
@@ -205,31 +228,29 @@
   (vertico-mode t))
 
 (use-package consult
-  :bind (("C-c r l"   . consult-register-load)
-         ("C-c r s"   . consult-register-store)
-
-         ("M-s M-f"   . consult-find)
+  :bind (("M-F"       . consult-focus-lines)
          ("M-K"       . consult-keep-lines)
-         ("M-F"       . consult-focus-lines)
          ("M-g M-g"   . consult-goto-line)
-         ("M-s M-g"   . consult-git-grep)
          ("M-s M-b"   . consult-buffer)
+         ("M-s M-f"   . consult-find)
+         ("M-s M-g"   . consult-git-grep)
+         ("M-s M-h"   . consult-history)
          ("M-s M-i"   . consult-imenu)
          ("M-s M-l"   . consult-line)
          ("M-s M-m"   . consult-mark)
          ("M-s M-s"   . consult-outline)
-         ("M-s M-h"   . consult-history)
          ("M-s M-y"   . consult-yank-pop))
 
   :config
   (require 'consult-imenu))
 
 (use-package embark
-  :bind (("C-."   . embark-act)       ;; pick some comfortable binding
-         ("C-;"   . embark-dwim)      ;; good alternative: M-.
-         ("C-h B" . embark-bindings)  ;; alternative for `describe-bindings'
-         (:map minibuffer-mode-map
-               ("C-c C-o" . embark-export))))
+  :bind (("C-."   . embark-act)
+         ("C-;"   . embark-dwim)
+         ("C-h B" . embark-bindings)
+
+         :map minibuffer-mode-map
+         ("C-c C-o" . embark-export)))
 
 (use-package embark-consult
   :hook (embark-collect-mode . consult-preview-at-point-mode))
@@ -242,38 +263,6 @@
                                        :mode-line-inactive vertical-border))
   :config
   (spacious-padding-mode t))
-
-;; window management
-(if (eq system-type 'darwin)
-    (setq window-management-prefix "H")
-  (setq window-management-prefix "s"))
-
-(bind-keys
- ;; Window Switching
- ((concat window-management-prefix "-e") . windmove-up)
- ((concat window-management-prefix "-d") . windmove-down)
- ((concat window-management-prefix "-f") . windmove-right)
- ((concat window-management-prefix "-s") . windmove-left)
-
- ;; Window Moving
- ((concat window-management-prefix "-E") . windmove-swap-states-up)
- ((concat window-management-prefix "-D") . windmove-swap-states-down)
- ((concat window-management-prefix "-F") . windmove-swap-states-right)
- ((concat window-management-prefix "-S") . windmove-swap-states-left)
-
- ;; Window Splitting
- ((concat window-management-prefix "-v") . split-window-vertically)
- ((concat window-management-prefix "-r") . split-window-horizontally)
- ((concat window-management-prefix "-w") . delete-window)
- ((concat window-management-prefix "-q") . delete-other-windows)
-
- ;; Misc Window Commands
- ((concat window-management-prefix "-a") . balance-windows)
- ((concat window-management-prefix "-t") . toggle-window-split)
- ((concat window-management-prefix "-<return>") . toggle-fullscreen)
-
- ((concat window-management-prefix "-W") . mjf/focused)
- ((concat window-management-prefix "-n") . narrow-or-widen-dwim))
 
 (provide 'core-packages)
 

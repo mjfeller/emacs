@@ -19,32 +19,33 @@
 
 ;;; Commentary:
 
+;; Of all the terminal emulators in emacs vterm appears to be the most reliable
+;; and behaves like standard terminals. Requires C libraries to be compiled when
+;; initialized.
+
 ;;; Code:
 
 (use-package vterm
-  :bind (("H-U" . vterm-other-window)
-         (:map vterm-mode-map ("M-P" . mjf/pash-copy)))
+  :bind (("s-U" . vterm-other-window))
+
+  :custom
+  (vterm-max-scrollback 100000) ; max scrollback vterm supports
+
   :config
   (add-to-list 'evil-emacs-state-modes 'vterm-mode)
-  (add-to-list 'evil-emacs-state-modes 'compilation-mode))
+  (add-to-list 'evil-emacs-state-modes 'compilation-mode)
 
-(if (eq system-type 'darwin)
+  ;; prefer vterm windows to act as dedicated popup windows to the right
+  (add-to-list 'display-buffer-alist '("\\*vterm\\*"
+                                       (display-buffer-reuse-window display-buffer-in-direction)
+                                       (side . right)
+                                       (dedicated . t))))
 
-    ;; macos
-    (use-package multi-vterm
-      :bind (("C-x p t" . multi-vterm-project)
-             ("H-T"     . multi-vterm-dedicated-open)
-             ("H-u"     . multi-vterm-next)
-             ("H-i"     . multi-vterm-prev)
-             ("H-y"     . multi-vterm)))
-
-  ;; linux
-  (use-package multi-vterm
-    :bind (("C-x p t" . multi-vterm-project)
-           ("s-T"     . multi-vterm-dedicated-open)
-           ("s-u"     . multi-vterm-next)
-           ("s-i"     . multi-vterm-prev)
-           ("s-y"     . multi-vterm))))
+(use-package multi-vterm
+  :bind (("s-U" . multi-vterm-dedicated-open)
+         ("s-u" . multi-vterm-next)
+         ("s-i" . multi-vterm-prev)
+         ("s-y" . multi-vterm)))
 
 (provide 'module-vterm)
 

@@ -31,7 +31,7 @@
 (menu-bar-mode t)               ; use macos menu bar
 
 (setq mac-option-modifier 'meta)
-(setq mac-command-modifier 'hyper)
+(setq mac-command-modifier 'super)
 
 ;; Enable emoji, and stop the UI from freezing when trying to display them.
 (if (fboundp 'set-fontset-font)
@@ -39,6 +39,7 @@
 
 (use-package exec-path-from-shell
   :custom
+  ;; speed up loads by using a non-interactive shell
   (exec-path-from-shell-arguments nil))
 
 (defun finder ()
