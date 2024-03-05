@@ -21,65 +21,25 @@
 
 ;;; Code:
 
-(defvar mjf/go-compile-command
-  "go build -v && go vet && go test -covermode=count -coverprofile=out.cover")
-
-(defun mjf/go-prog-init ()
-  "if go is install go get all dependencies for emacs go packages"
-  (interactive)
-  (if (not (eq (executable-find "go") nil))
-      (progn
-        (mapcar (lambda (pkg)
-                  (let ((cmd (concat "go install " pkg)))
-                    (call-process-shell-command cmd nil "*go-get-output*" t)))
-                '("github.com/nsf/gocode@latest"
-                  "golang.org/x/tools/cmd/goimports@latest"
-                  "github.com/rogpeppe/godef@latest"
-                  "golang.org/x/lint@latest"
-                  "golang.org/x/tools/cmd/gorename@latest"
-                  "golang.org/x/tools/cmd/guru@latest"
-                  "github.com/kisielk/errcheck@latest"
-                  "golang.org/x/tools/gopls@latest")))
-    (message "go executable not found, install go from https://golang.org/download")))
-
-(defun mjf/go-cover ()
-  (interactive)
-  (shell-command "go tool cover -html=out.cover"))
-
-(defun mjf/setup-go-mode-compile ()
-  "Customize compile command to run go build"
+(defun mjf-go-mode-compilation ()
+  "Customize compile command for `go-mode'"
   (set (make-local-variable 'compile-command)
-       mjf/go-compile-command))
+       "go build -v && go vet && go test -covermode=count -coverprofile=out.cover"))
 
-(defun mjf/go-init-company ()
-  "Initialize company mode for go"
-  (set (make-local-variable 'company-backends) '(company-go))
-  (company-mode))
+(defun mjf-setup-gofmt-before-save ()
+  (add-hook 'before-save-hook 'gofmt-before-save))
 
 (use-package go-mode
-  :demand
   :bind
-  (:map go-mode-map
-        ("C-c C-g" . go-goto-imports)
-        ("C-c C-c" . compile)
-        ("C-c C"   . go-cover))
+  ((:map go-mode-map ("C-c C-c" . compile)))
 
-  :init
-  (unless (getenv "GOPATH")
-    (setenv "GOPATH" (concat (getenv "HOME") "/development/go")))
+  :custom
+  (gofmt-command "goimports") ; use goimports instead of go-fmt
+  (godoc-command "godoc")     ; use godoc instead of go doc
 
-  (setenv "PATH" (concat (getenv "PATH") ":"
-                         (concat (getenv "GOPATH")"/bin")))
-
-  :config
-  (setq gofmt-command "goimports") ; use goimports instead of go-fmt
-  (setq godoc-command "godoc")     ; use godoc instead of go doc
-  (setq tab-width 8)
-
-  (add-hook 'go-mode-hook 'mjf/setup-go-mode-compile)
-  (add-hook 'go-mode-hook 'subword-mode)
-  (add-hook 'go-mode-hook 'hs-minor-mode)
-  (add-hook 'before-save-hook 'gofmt-before-save))
+  :hook
+  (go-mode-hook . mjf-go-mode-compilation)
+  (go-mode-hook . mjf-setup-gofmt-before-save))
 
 (provide 'module-go)
 

@@ -22,58 +22,32 @@
 ;;; Code:
 
 (use-package evil
-  :bind
-  (:map evil-normal-state-map ("C-u" . evil-scroll-up))
-  (:map evil-visual-state-map ("C-u" . evil-scroll-up))
-  (:map evil-insert-state-map ("C-u" . evil-scroll-up))
+  :custom
+  (evil-want-C-u-scroll t)
+  ;; (evil-mode-line-format '(before . mode-line-front-space))
+  (evil-echo-state nil)
+  (evil-esc-delay 0)
 
   :config
-  (setq evil-mode-line-format '(before . mode-line-front-space))
-  (setq evil-echo-state nil)
-  (setq evil-esc-delay 0)
-
   (add-to-list 'evil-emacs-state-modes 'sly-inspector-mode)
   (add-to-list 'evil-emacs-state-modes 'sly-mrepl-mode)
   (add-to-list 'evil-emacs-state-modes 'sly-db-mode)
   (add-to-list 'evil-emacs-state-modes 'compilation-mode)
   (add-to-list 'evil-emacs-state-modes 'grep-mode)
-
   (evil-mode t))
 
 (use-package evil-goggles
-  :config
-  (setq evil-goggles-pulse t)
-  (setq evil-goggles-blocking-duration 0.100)
-  (setq evil-goggles-async-duration 0.300)
+  :custom
+  (evil-goggles-pulse t)
+  (evil-goggles-blocking-duration 0.100)
+  (evil-goggles-async-duration 0.300)
 
+  :config
   (evil-goggles-mode t))
 
 (use-package evil-surround
-  :config (global-evil-surround-mode t))
-
-(use-package evil-commentary
-  :disabled
-  :config (evil-commentary-mode t))
-
-(use-package evil-snipe
-  :disabled
-  :config (evil-snipe-override-mode t))
-
-(use-package evil-org
-  :disabled
   :config
-  (require 'evil-org-agenda)
-
-  (add-hook 'org-mode-hook 'evil-org-mode)
-
-  (evil-org-agenda-set-keys)
-  (evil-org-set-key-theme '(textobjects
-                            insert
-                            navigation
-                            additional
-                            shift
-                            todo
-                            heading)))
+  (global-evil-surround-mode t))
 
 (provide 'module-evil)
 

@@ -22,27 +22,13 @@
 ;;; Code:
 
 (use-package haskell-mode
-  :bind (:map haskell-mode-map
-              ("C-c C-c" . haskell-compile)
-              :map haskell-cabal-mode-map
-              ("C-c C-c" . haskell-compile))
-  :config
-  (progn (setq haskell-stylish-on-save t)
-         (setq haskell-doc-prettify-types t)
+  :bind
+  ((:map haskell-mode-map ("C-c C-c" . haskell-compile))
+   (:map haskell-cabal-mode-map ("C-c C-c" . haskell-compile)))
 
-         (defun haskell-mode-defaults ()
-           (subword-mode +1)
-           (eldoc-mode +1)
-           (haskell-indentation-mode +1)
-           (interactive-haskell-mode +1))
-
-         (setq haskell-mode-hook 'haskell-mode-defaults)
-
-         (add-hook 'haskell-mode-hook (lambda ()
-                                        (run-hooks 'haskell-mode-hook)))))
-
-(use-package flycheck-haskell
-  :after (haskell-mode flycheck-mode))
+  :custom
+  (haskell-stylish-on-save t)
+  (haskell-doc-prettify-types t))
 
 (provide 'module-haskell)
 

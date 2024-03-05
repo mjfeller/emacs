@@ -21,33 +21,20 @@
 
 ;;; Code:
 
-(defun mjf/setup-rust-mode-compile ()
-  "Customize compile command to run go build"
-  (if (not (string-match "cargo" compile-command))
-      (set (make-local-variable 'compile-command)
-           "cargo build")))
+(defun mjf-rust-mode-compilation ()
+  "Customize compile command for `rust-mode'"
+  (set (make-local-variable 'compile-command)
+       "cargo build"))
 
 (use-package rust-mode
   :bind
-  (:map rust-mode-map
-        ("C-c C-c"   . compile)
-        ("C-c <tab>" . rust-format-buffer))
+  (:map rust-mode-map ("C-c C-c" . compile))
+
   :custom
   (rust-format-on-save t)
-  :config
-  (add-hook 'rust-mode-hook 'mjf/setup-rust-mode-compile))
 
-(use-package racer
-  :after (rust-mode)
-  :bind
-  (:map rust-mode-map
-        ("TAB"   . company-indent-or-complete-common))
-  :custom
-  (company-tooltip-align-annotations t)
-  :config
-  (add-hook 'rust-mode-hook #'racer-mode)
-  (add-hook 'racer-mode-hook #'eldoc-mode)
-  (add-hook 'racer-mode-hook #'company-mode))
+  :hook
+  (rust-mode-hook . mjf-rust-mode-compilation))
 
 (provide 'module-rust)
 

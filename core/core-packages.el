@@ -167,14 +167,14 @@
                '(java-mode . ("java-language-server"))))
 
 (use-package company
-  :demand
-  :config
-  (setq company-idle-delay 0)
-  (setq company-tooltip-limit 10)
-  (setq company-echo-delay 0)
-  (setq company-tooltip-flip-when-above t)
-  (setq company-begin-commands '(self-insert-command))
+  :custom
+  (company-idle-delay 0)
+  (company-tooltip-limit 10)
+  (company-echo-delay 0)
+  (company-tooltip-flip-when-above t)
+  (company-begin-commands '(self-insert-command))
 
+  :config
   (global-company-mode))
 
 (use-package comment-dwim-2
