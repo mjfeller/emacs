@@ -29,9 +29,6 @@
   (getenv
    (if (equal system-type 'windows-nt) "USERNAME" "USER")))
 
-(when (version< emacs-version "24.4")
-  (error "Requires at least GNU Emacs 24.4, but you're running %s" emacs-version))
-
 ;; Always load newest byte code
 (setq load-prefer-newer t)
 
