@@ -33,6 +33,9 @@
          :map org-src-mode-map
          ("C-x C-s" . org-edit-src-exit))
 
+  :custom
+  (org-persist-directory "~/.cache/emacs/org-persist")
+
   :config
   (require 'org-indent)
   (require 'org-src)

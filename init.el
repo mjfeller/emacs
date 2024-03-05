@@ -62,7 +62,7 @@
 (add-to-list 'load-path lisp-dir)
 
 ;; load the custom file
-(setq custom-file "~/.cache/emacs-custom.el")
+(setq custom-file "~/.cache/emacs/custom.el")
 (unless (file-exists-p custom-file)
   (write-region "" nil custom-file))
 (load custom-file)

@@ -51,7 +51,7 @@
   (display-line-numbers-widen nil)      ; don't count narrowed regions
 
   ;; save place improvements
-  (save-place-file "~/.cache/places")
+  (save-place-file "~/.cache/emacs/places")
   (backup-by-copying t)
   (delete-old-versions t)
   (kept-new-versions 6)
@@ -64,16 +64,16 @@
   (backup-directory-alist `((".*" . ,temporary-file-directory)))
   (auto-save-file-name-transforms `((".*" ,temporary-file-directory t)))
 
-  (auto-save-list-file-prefix         "~/.cache/auto-save-list/.saves-")
-  (bookmark-default-file              "~/.cache/emacs-bookmarks.el")
-  (ede-project-placeholder-cache-file "~/.cache/ede-projects.el")
-  (semanticdb-default-save-directory  "~/.cache/semanticdb")
-  (abbrev-file-name                   "~/.cache/abbrev_defs.el")
-  (tramp-persistency-file-name        "~/.cache/tramp.el")
-  (recentf-save-file                  "~/.cache/recentf")
-  (org-id-locations-file              "~/.cache/org-id-locations.el")
-  (nsm-settings-file                  "~/.cache/emacs-network-security.el")
-  (url-configuration-directory        "~/.cache/url/")
+  (auto-save-list-file-prefix         "~/.cache/emacs/auto-save-list/.saves-")
+  (bookmark-default-file              "~/.cache/emacs/bookmarks.el")
+  (ede-project-placeholder-cache-file "~/.cache/emacs/ede-projects.el")
+  (semanticdb-default-save-directory  "~/.cache/emacs/semanticdb")
+  (abbrev-file-name                   "~/.cache/emacs/abbrev_defs.el")
+  (tramp-persistency-file-name        "~/.cache/emacs/tramp.el")
+  (recentf-save-file                  "~/.cache/emacs/recentf")
+  (org-id-locations-file              "~/.cache/emacs/org-id-locations.el")
+  (nsm-settings-file                  "~/.cache/emacs/network-security.el")
+  (url-configuration-directory        "~/.cache/emacs/url/")
 
   (ediff-split-window-function 'split-window-horizontally)
   (ediff-window-setup-function 'ediff-setup-windows-plain)
@@ -109,7 +109,7 @@
          ("C-x p m" . magit-project-status))
 
   :custom
-  (project-list-file "~/.cache/emacs-projects.el")
+  (project-list-file "~/.cache/emacs/projects.el")
   (project-switch-commands '((project-find-file    "Find file"      "f")
                              (project-find-dir     "Find directory" "d")
                              (consult-ripgrep      "Find regexp"    "g")

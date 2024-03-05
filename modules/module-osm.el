@@ -29,7 +29,7 @@
   (osm-copyright t)
   (osm-max-tiles 25600)
   (osm-home '(40 -105 10))
-  (osm-tile-directory "~/.cache/osm"))
+  (osm-tile-directory "~/.cache/emacs/osm"))
 
 (provide 'module-osm)
 

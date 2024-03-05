@@ -27,7 +27,7 @@
 ;; each 50MB of allocated data (the default is on every 0.76MB)
 (setq gc-cons-threshold 50000000)
 
-(setq package-user-dir "~/.cache/elpa")                      ; move packages to the cache directory
+(setq package-user-dir "~/.cache/emacs/elpa")                ; move packages to the cache directory
 
 (setq native-comp-eln-load-path '( "~/.cache/emacs/eln")     ; move compiled code to cache dir
       native-comp-async-report-warnings-errors 'silent       ; suppress compiler warnings
