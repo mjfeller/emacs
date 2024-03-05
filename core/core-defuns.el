@@ -195,7 +195,7 @@ is already narrowed."
 
 (defun mjf/pash-copy ()
   (interactive)
-  (let ((arg (ivy-completing-read "" (mjf/pash-list))))
+  (let ((arg (completing-read "" (mjf/pash-list))))
     (shell-command-to-string (format "pash copy %s" arg))))
 
 (defun mjf/pash-list ()
