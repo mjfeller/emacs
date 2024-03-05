@@ -35,7 +35,6 @@
       warning-suppress-log-types '((comp) (bytecomp)))       ; suppress extra logs
 
 (setq frame-resize-pixelwise t)
-(pixel-scroll-precision-mode t)
 (tool-bar-mode 0)                                            ; disable the tool bar
 (scroll-bar-mode 0)                                          ; disable the scroll bar
 (set-fringe-mode 10)                                         ; set fringe width
