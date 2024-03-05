@@ -1,4 +1,4 @@
-;;; init.el  --- initialize
+;;; module-zig.el --- Packages used for zig
 
 ;; Author: Mark Feller <mark.feller@member.fsf.org>
 
@@ -21,31 +21,17 @@
 
 ;;; Code:
 
-(message "Loading core...")
+(defun mjf-zig-mode-compilation ()
+  "Customize compile command for `zig-mode'"
+  (set (make-local-variable 'compile-command)
+       "zig build"))
 
-(require 'core-bootstrap)
-(require 'core-defuns)
-(require 'core-packages)
-(when (eq system-type 'darwin) (require 'core-macos))
+(use-package zig-mode
+  :bind (:map zig-mode-map ("C-c C-c" . compile))
 
-(message "Loading modules...")
+  :hook
+  (zig-mode-hook . mjf-zig-mode-compilation))
 
-(require 'module-c)
-(require 'module-docker)
-(require 'module-eldoc)
-(require 'module-emacs-lisp)
-(require 'module-evil)
-(require 'module-git)
-(require 'module-go)
-(require 'module-ledger)
-(require 'module-notmuch)
-(require 'module-org)
-(require 'module-osm)
-(require 'module-vterm)
-(require 'module-yaml)
-(require 'module-zig)
+(provide 'module-zig)
 
-;; load any custom user provided locals
-(require 'init-local)
-
-;;; init.el ends here
+;;; module-zig.el ends here
