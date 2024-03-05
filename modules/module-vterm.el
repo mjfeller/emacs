@@ -42,8 +42,7 @@
                                        (dedicated . t))))
 
 (use-package multi-vterm
-  :bind (("s-U" . multi-vterm-dedicated-open)
-         ("s-u" . multi-vterm-next)
+  :bind (("s-u" . multi-vterm-next)
          ("s-i" . multi-vterm-prev)
          ("s-y" . multi-vterm)))
 
