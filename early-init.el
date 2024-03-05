@@ -23,47 +23,58 @@
 
 ;;; Code:
 
-;; reduce the frequency of garbage collection by making it happen on
-;; each 50MB of allocated data (the default is on every 0.76MB)
-(setq gc-cons-threshold 50000000)
+(defvar emacs-dir (file-name-directory "~/.config/emacs/")
+  "The root dir of the Emacs distribution.")
 
+(defvar core-dir (expand-file-name "core" emacs-dir)
+  "The home of core functionality.")
+
+(defvar modules-dir (expand-file-name "modules" emacs-dir)
+  "This directory houses all of the modules.")
+
+(defvar lisp-dir (expand-file-name "lisp" emacs-dir)
+  "This directory houses user lisp and site lisp")
+
+(if (file-exists-p (concat emacs-dir "src"))
+  (setq source-directory (concat emacs-dir "src")))
+
+;; setup all critical load paths
+(add-to-list 'load-path core-dir)
+(add-to-list 'load-path modules-dir)
+(add-to-list 'load-path lisp-dir)
+
+(setq gc-cons-threshold (* 1000 1000 50))                    ; reduce frequency of garbage collection
+(setq gc-cons-percentage 0.1)
 (setq package-user-dir "~/.cache/emacs/elpa")                ; move packages to the cache directory
-
-(setq native-comp-eln-load-path '( "~/.cache/emacs/eln")     ; move compiled code to cache dir
-      native-comp-async-report-warnings-errors 'silent       ; suppress compiler warnings
-      byte-compile-warnings '(not obsolete)                  ; reduce compiler warnings
-      warning-suppress-log-types '((comp) (bytecomp)))       ; suppress extra logs
-
+(setq native-comp-eln-load-path '( "~/.cache/emacs/eln"))    ; move compiled code to cache dir
+(setq native-comp-async-report-warnings-errors 'silent)      ; suppress compiler warnings
+(setq byte-compile-warnings '(not obsolete))                 ; reduce compiler warnings
+(setq warning-suppress-log-types '((comp) (bytecomp)))       ; suppress extra logs
 (setq inhibit-startup-echo-area-message user-login-name)
 (setq frame-resize-pixelwise t)
+(setq load-prefer-newer t)
+(setq custom-file (make-temp-file "emacs-custom-"))          ; effectively disable the emacs custom file
+(setq shell-file-name "zsh")
+
 (tool-bar-mode 0)                                            ; disable the tool bar
 (scroll-bar-mode 0)                                          ; disable the scroll bar
 (set-fringe-mode 10)                                         ; set fringe width
 (set-frame-parameter nil 'internal-border-width 0)           ; remove frame border
 
-(setq default-frame-alist '((width . 85)
-                            (height . 50)
+;; avoid white screen flashes on startup
+(setq default-frame-alist '((background-color . "#000000")))
 
-                            ;; You can turn off scroll bars by uncommenting these lines:
-                            (vertical-scroll-bars . nil)
-                            (horizontal-scroll-bars . nil)
-
-                            ;; Setting the face in here prevents flashes of
-                            ;; color as the theme gets activated
-                            (background-color . "#000000")
-                            (ns-appearance . dark)
-                            (ns-transparent-titlebar . t)))
+(when (eq system-type 'darwin)
+  (add-to-list 'default-frame-alist
+               '(ns-appearance . dark)
+               '(ns-transparent-titlebar . t)))
 
 (unless (eq system-type 'darwin)
-  (add-to-list 'default-frame-alist '(undecorated . t)))
+  (add-to-list 'default-frame-alist
+               '(undecorated . t)))
 
-(setq shell-file-name "zsh")
-
-(add-to-list 'load-path "~/.config/emacs/lisp")
-
+;; setup modeline before the default frame has been initialized
 (require 'prot-modeline)
-
-;;; Mode line
 (setq mode-line-compact nil) ; Emacs 28
 (setq mode-line-right-align-edge 'right-margin) ; Emacs 30
 (setq-default mode-line-format

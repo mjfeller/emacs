@@ -21,63 +21,12 @@
 
 ;;; Code:
 
-;;---------------------------------------------------------------------
-;; Init
-;;---------------------------------------------------------------------
-
-(defvar current-user
-  (getenv
-   (if (equal system-type 'windows-nt) "USERNAME" "USER")))
-
-;; Always load newest byte code
-(setq load-prefer-newer t)
-
-;; warn when opening files bigger than 100MB
-(setq large-file-warning-threshold 100000000)
-
-;;---------------------------------------------------------------------
-;; Variables and Load Paths
-;;---------------------------------------------------------------------
-
-(defvar emacs-dir (file-name-directory "~/.config/emacs/")
-  "The root dir of the Emacs distribution.")
-
-(defvar core-dir (expand-file-name "core" emacs-dir)
-  "The home of core functionality.")
-
-(defvar modules-dir (expand-file-name "modules" emacs-dir)
-  "This directory houses all of the modules.")
-
-(defvar lisp-dir (expand-file-name "lisp" emacs-dir)
-  "This directory houses user lisp and site lisp")
-
-(if (file-exists-p (concat emacs-dir "src"))
-  (setq source-directory (concat emacs-dir "src")))
-
-(add-to-list 'load-path core-dir)
-(add-to-list 'load-path modules-dir)
-(add-to-list 'load-path lisp-dir)
-
-;; load the custom file
-(setq custom-file "~/.cache/emacs/custom.el")
-(unless (file-exists-p custom-file)
-  (write-region "" nil custom-file))
-(load custom-file)
-
-;;---------------------------------------------------------------------
-;; Core
-;;---------------------------------------------------------------------
-
 (message "Loading core...")
 
 (require 'core-bootstrap)
 (require 'core-defuns)
 (require 'core-packages)
 (when (eq system-type 'darwin) (require 'core-macos))
-
-;;---------------------------------------------------------------------
-;; Modules
-;;---------------------------------------------------------------------
 
 (message "Loading modules...")
 

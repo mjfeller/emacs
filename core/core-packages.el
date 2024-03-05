@@ -32,7 +32,7 @@
 
   ;; perfer to split windows vertically instead of horizontally
   (split-height-threshold nil)
-  (split-width-threshold 120)
+  (split-width-threshold 140)
 
   (ring-bell-function 'ignore) ; disable the annoying bell ring
   (inhibit-startup-screen t)   ; disable startup screen
@@ -78,7 +78,8 @@
   (ediff-split-window-function 'split-window-horizontally)
   (ediff-window-setup-function 'ediff-setup-windows-plain)
 
-  (use-short-answers t)          ; enable y/n answers
+  (use-short-answers t)                      ; enable y/n answers
+  (large-file-warning-threshold 100000000)   ; warn when opening files bigger than 100MB
 
   :config
   (set-frame-font "Iosevka Comfy 12" nil t)
