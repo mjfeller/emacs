@@ -126,6 +126,7 @@
          ("s-t" . toggle-window-split)
          ("s-<return>" . toggle-fullscreen)
 
+         ("M-P" . mjf/pash-copy)
          ("s-W" . mjf/focused)
          ("s-n" . narrow-or-widen-dwim)))
 

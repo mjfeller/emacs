@@ -26,7 +26,10 @@
 ;;; Code:
 
 (use-package vterm
-  :bind (("s-U" . vterm-other-window))
+  :bind (("s-U" . vterm-other-window)
+
+         :map vterm-mode-map
+         ("M-P" . mjf/pash-copy))
 
   :custom
   (vterm-max-scrollback 100000) ; max scrollback vterm supports

@@ -228,8 +228,6 @@ is already narrowed."
                            (line-number-at-pos end))))
              ""))))
 
-(bind-keys ("M-P" . mjf/pash-copy))
-
 (defun ip-info (start end)
   (interactive "r")
   (let ((subnet (buffer-substring start end)))
