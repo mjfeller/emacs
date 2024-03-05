@@ -34,6 +34,7 @@
       byte-compile-warnings '(not obsolete)                  ; reduce compiler warnings
       warning-suppress-log-types '((comp) (bytecomp)))       ; suppress extra logs
 
+(setq inhibit-startup-echo-area-message user-login-name)
 (setq frame-resize-pixelwise t)
 (tool-bar-mode 0)                                            ; disable the tool bar
 (scroll-bar-mode 0)                                          ; disable the scroll bar
