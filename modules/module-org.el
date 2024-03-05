@@ -47,7 +47,6 @@
   (setq org-hide-emphasis-markers t)
 
   (add-hook 'org-after-todo-statistics-hook 'mjf/org-summary-todo)
-  (add-hook 'org-mode-hook 'disable-line-numbers)
   (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 
   (setq mjf/org-work-file (format "%s/work.org" (getenv "XDG_DOCUMENTS_DIR")))
@@ -101,24 +100,6 @@
    'org-mode
    '(("^ +\\([-*]\\) "
       (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•")))))))
-
-(use-package org-fancy-priorities
-  :ensure t
-  :hook (org-mode . org-fancy-priorities-mode)
-  :config
-  (setq org-fancy-priorities-list '("⬆" "➡" "⬇" "☕"))
-  (setq org-priority-faces '((65 . "#dc322f")
-                             (66 . "#cb4b16")
-                             (67 . "#859900"))))
-
-(use-package deft
-  :disabled
-  :config
-  (setq deft-directory "~/org"
-        deft-extensions '("md" "org")
-        deft-recursive t)
-
-  (add-hook 'deft-mode-hook (lambda () (evil-emacs-state))))
 
 (provide 'module-org)
 
