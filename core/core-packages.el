@@ -157,12 +157,13 @@
   (tree-sitter-after-on-hook . tree-sitter-hl-mode))
 
 (use-package eglot
-  :bind (:map eglot-mode-map
-              ("C-c r" . eglot-rename)
-              ("C-c o" . eglot-code-action-organize-imports)
-              ("C-c h" . eldoc)
-              ("M-."   . xref-show-definitions-function)
-              ("M-,"   . xref-go-back))
+  :bind (; mode map bindings
+         :map eglot-mode-map
+         ("C-c r" . eglot-rename)
+         ("C-c o" . eglot-code-action-organize-imports)
+         ("C-c h" . eldoc)
+         ("M-."   . xref-show-definitions-function)
+         ("M-,"   . xref-go-back))
 
   :config
   (add-to-list 'eglot-stay-out-of 'flymake)
