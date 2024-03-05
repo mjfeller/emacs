@@ -51,9 +51,11 @@
                             ;; Setting the face in here prevents flashes of
                             ;; color as the theme gets activated
                             (background-color . "#000000")
-                            (undecorated . t)
                             (ns-appearance . dark)
                             (ns-transparent-titlebar . t)))
+
+(unless (eq system-type 'darwin)
+  (add-to-list 'default-frame-alist '(undecorated . t)))
 
 (setq shell-file-name "zsh")
 
