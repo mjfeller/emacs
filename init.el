@@ -30,7 +30,6 @@
 
 (message "Loading modules...")
 
-(require 'module-c)
 (require 'module-docker)
 (require 'module-eldoc)
 (require 'module-emacs-lisp)
