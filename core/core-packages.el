@@ -78,10 +78,11 @@
   (ediff-split-window-function 'split-window-horizontally)
   (ediff-window-setup-function 'ediff-setup-windows-plain)
 
+  (use-short-answers t)          ; enable y/n answers
+
   :config
   (set-frame-font "Iosevka Comfy Wide Motion 10" nil t)
 
-  (setopt use-short-answers t)          ; enable y/n answers
   (scroll-bar-mode 0)                   ; disable the scroll bar
   (menu-bar-mode 0)                     ; disable the menu bar
   (blink-cursor-mode 0)                 ; the blinking cursor is nothing but an annoyance
