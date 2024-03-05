@@ -81,7 +81,7 @@
   (use-short-answers t)          ; enable y/n answers
 
   :config
-  (set-frame-font "Iosevka Comfy 13" nil t)
+  (set-frame-font "Iosevka Comfy 12" nil t)
 
   (scroll-bar-mode 0)                   ; disable the scroll bar
   (menu-bar-mode 0)                     ; disable the menu bar
