@@ -139,6 +139,7 @@
                              (project-find-dir     "Find directory" "d")
                              (consult-ripgrep      "Find regexp"    "g")
                              (project-kill-buffers "Kill buffers"   "k")
+                             (multi-vterm-project  "vterm"          "v")
                              (magit-project-status "Magit"          "m"))))
 
 (use-package modus-themes
