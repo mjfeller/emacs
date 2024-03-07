@@ -21,14 +21,10 @@
 
 ;;; Code:
 
-(use-package paredit
-  :disabled
-  :init (add-hook 'emacs-lisp-mode-hook 'paredit-mode))
-
 (use-package paren-face
   :config
-  (progn (global-paren-face-mode t)
-         (set-face-attribute 'parenthesis nil :inherit 'line-number)))
+  (global-paren-face-mode t)
+  (set-face-attribute 'parenthesis nil :inherit 'line-number))
 
 (use-package macrostep)
 
