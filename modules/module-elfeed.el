@@ -85,10 +85,8 @@ browser defined by `browse-url-generic-program'."
   :config
   (setq elfeed-db-directory "~/.local/share/elfeed")
 
-  (add-hook 'elfeed-search-mode-hook 'disable-line-numbers)
-  (add-hook 'elfeed-search-mode-hook 'evil-emacs-state)
-  (add-hook 'elfeed-show-mode-hook 'disable-line-numbers)
-  (add-hook 'elfeed-show-mode-hook 'evil-emacs-state))
+  (evil-set-initial-state 'elfeed-search-mode 'emacs)
+  (evil-set-initial-state 'elfeed-show-mode 'emacs))
 
 (provide 'module-elfeed)
 

@@ -35,8 +35,7 @@
   (vterm-max-scrollback 100000) ; max scrollback vterm supports
 
   :config
-  (add-to-list 'evil-emacs-state-modes 'vterm-mode)
-  (add-to-list 'evil-emacs-state-modes 'compilation-mode)
+  (evil-set-initial-state 'vterm-mode 'emacs)
 
   ;; prefer vterm windows to act as dedicated popup windows to the right
   (add-to-list 'display-buffer-alist '("\\*vterm\\*"

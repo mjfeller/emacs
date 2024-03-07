@@ -29,11 +29,12 @@
   (evil-esc-delay 0)
 
   :config
-  (add-to-list 'evil-emacs-state-modes 'sly-inspector-mode)
-  (add-to-list 'evil-emacs-state-modes 'sly-mrepl-mode)
-  (add-to-list 'evil-emacs-state-modes 'sly-db-mode)
-  (add-to-list 'evil-emacs-state-modes 'compilation-mode)
-  (add-to-list 'evil-emacs-state-modes 'grep-mode)
+  (evil-set-initial-state 'sly-inspector-mode 'emacs)
+  (evil-set-initial-state 'sly-mrepl-mode 'emacs)
+  (evil-set-initial-state 'sly-db-mode 'emacs)
+  (evil-set-initial-state 'compilation-mode 'emacs)
+  (evil-set-initial-state 'grep-mode 'emacs)
+  (evil-set-initial-state 'compilation-mode 'emacs)
   (evil-mode t))
 
 (use-package evil-goggles

@@ -31,8 +31,7 @@
 (use-package ledger-mode
   :mode "\\.ledger\\'"
   :config
-  (add-hook 'ledger-report-mode-hook 'disable-line-numbers)
-  (add-hook 'ledger-report-mode-hook 'evil-emacs-state)
+  (evil-set-initial-state 'ledger-report-mode 'emacs)
 
   (setq ledger-post-amount-alignment-column 62)
   (setq ledger-report-auto-refresh nil)
