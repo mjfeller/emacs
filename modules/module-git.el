@@ -23,11 +23,9 @@
 
 (use-package magit
   :bind (("C-x g" . magit-status))
-  :init
-  (setq transient-history-file "~/.cache/emacs/transient/history.el")
-  (setq transient-display-buffer-action '(display-buffer-below-selected))
-  (setq transient-mode-line-format
-        '("%e" mode-line-front-space mode-line-buffer-identification)))
+  :custom
+  (transient-history-file "~/.cache/emacs/transient/history.el")
+  (transient-display-buffer-action '(display-buffer-below-selected)))
 
 (use-package git-timemachine)
 

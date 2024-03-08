@@ -24,7 +24,7 @@
 (defun mjf-go-mode-compilation ()
   "Customize compile command for `go-mode'"
   (set (make-local-variable 'compile-command)
-       "go build -v && go vet && go test -covermode=count -coverprofile=out.cover"))
+       "go build -v && go vet && go test"))
 
 (defun mjf-setup-gofmt-before-save ()
   (add-hook 'before-save-hook 'gofmt-before-save))
@@ -34,8 +34,8 @@
   ((:map go-mode-map ("C-c C-c" . compile)))
 
   :custom
-  (gofmt-command "goimports") ; use goimports instead of go-fmt
-  (godoc-command "godoc")     ; use godoc instead of go doc
+  (gofmt-command "goimports")
+  (godoc-command "godoc")
 
   :hook
   (go-mode-hook . mjf-go-mode-compilation)

@@ -24,7 +24,6 @@
 (use-package evil
   :custom
   (evil-want-C-u-scroll t)
-  ;; (evil-mode-line-format '(before . mode-line-front-space))
   (evil-echo-state nil)
   (evil-esc-delay 0)
 
