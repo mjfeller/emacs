@@ -14,6 +14,9 @@
 
 (setq treesit-font-lock-level 3)
 
+(add-to-list 'auto-mode-alist '("\\.nix\\'" . nix-ts-mode))
+(add-to-list 'auto-mode-alist '("\\flake.lock\\'" . json-ts-mode))
+
 (add-to-list 'auto-mode-alist '("\\go.mod\\'" . go-mod-ts-mode))
 (add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-ts-mode))
 (add-to-list 'major-mode-remap-alist '(python-mode . python-ts-mode))
