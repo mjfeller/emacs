@@ -12,10 +12,5 @@
   (setq user-mail-address "mfeller@squareup.com")
   (setq mml-secure-smime-sign-with-sender "mfeller@squareup.com"))
 
-(use-package gptel
-  :bind (("C-c RET" . gptel-send)
-         ("C-c C-<return>" . gptel-menu))
-  :config
-  (setq gptel-default-mode 'org-mode))
 
 (provide 'init-local)
