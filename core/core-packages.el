@@ -149,13 +149,6 @@
   :config
   (load-theme 'modus-vivendi t))
 
-(use-package tree-sitter
-  :config
-  (global-tree-sitter-mode)
-
-  :hook
-  (tree-sitter-after-on-hook . tree-sitter-hl-mode))
-
 (use-package eglot
   :bind (; mode map bindings
          :map eglot-mode-map
