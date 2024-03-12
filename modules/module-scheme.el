@@ -21,12 +21,9 @@
 
 ;;; Code:
 
-;;(use-package guile-scheme)
-
 (use-package geiser
-  :config
-  (progn (setq geiser-repl-history-filename
-               (concat persistent-dir "geiser_history.guile"))))
+  :custom
+  (geiser-repl-history-filename (concat persistent-dir "geiser_history.guile")))
 
 (provide 'module-scheme)
 
