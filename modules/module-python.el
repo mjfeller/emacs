@@ -61,19 +61,6 @@
              ("<="     . ?≤)
              ("->"     . ?➜))))))
 
-(use-package elpy
-  :bind
-  (:map elpy-mode-map
-        ("C-c C-j" . elpy-goto-definition)
-        ("M-,"     . pop-tag-mark))
-
-  :config
-  (setq elpy-rpc-backend "jedi")
-  (setq elpy-rpc-python-command "python3")
-  (setq elpy-shell-echo-output nil)
-
-  (elpy-enable))
-
 (use-package pip-requirements
   :config
   (add-hook 'pip-requirements-mode-hook #'pip-requirements-auto-complete-setup))
