@@ -244,6 +244,7 @@
          ("M-s M-l"   . consult-line)
          ("M-s M-m"   . consult-mark)
          ("M-s M-s"   . consult-outline)
+         ("M-s M-t"   . consult-theme)
          ("M-s M-y"   . consult-yank-pop))
 
   :config
