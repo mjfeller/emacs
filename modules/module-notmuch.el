@@ -104,6 +104,15 @@ the mail, but tag it for later deletion."
      (:name "OpenBSD tech" :query "tech@openbsd.org tag:unread" :search-type tree)
      (:name "OpenBSD misc" :query "misc@openbsd.org tag:unread" :search-type tree))))
 
+(mjf-initialize-personal-email)
+(setq user-mail-address "mark@mfeller.io")
+(setq mml-secure-smime-sign-with-sender "mark@mfeller.io")
+(setq message-signature-file "~/.local/share/emacs/signature")
+
+(when (eq system-type 'darwin)
+  (setq user-mail-address "mfeller@squareup.com")
+  (setq mml-secure-smime-sign-with-sender "mfeller@squareup.com"))
+
 (provide 'module-notmuch)
 
 ;;; module-notmuch.el ends here

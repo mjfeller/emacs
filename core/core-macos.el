@@ -42,6 +42,10 @@
   ;; speed up loads by using a non-interactive shell
   (exec-path-from-shell-arguments nil))
 
+(dolist (var '("GNUPGHOME" "NOTMUCH_CONFIG" "XDG_DOCUMENTS_DIR"))
+    (add-to-list 'exec-path-from-shell-variables var))
+  (exec-path-from-shell-initialize)
+
 (defun finder ()
   "Opens file directory in Finder."
   (interactive)

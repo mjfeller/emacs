@@ -46,7 +46,4 @@
 (require 'module-yaml)
 (require 'module-zig)
 
-;; load any custom user provided locals
-(require 'init-local)
-
 ;;; init.el ends here
