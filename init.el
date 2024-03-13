@@ -40,7 +40,6 @@
 (require 'module-org)
 (require 'module-osm)
 (require 'module-vterm)
-(require 'module-yaml)
 (require 'module-zig)
 
 ;; load any custom user provided locals
