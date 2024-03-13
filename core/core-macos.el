@@ -70,6 +70,9 @@
       (append '("/opt/homebrew/share/info" "/opt/homebrew/share/info/emacs")
               Info-directory-list))
 
+(set-fontset-font "fontset-default" ? (font-spec :family "MesloLGL Nerd Font" :size 8))
+(set-fontset-font "fontset-default" ? (font-spec :family "MesloLGL Nerd Font" :size 8))
+
 (provide 'core-macos)
 
 ;;; core-osx.el ends here
