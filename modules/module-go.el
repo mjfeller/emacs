@@ -41,14 +41,14 @@
   (go-mode-hook . mjf-go-mode-compilation)
   (go-mode-hook . mjf-setup-gofmt-before-save))
 
-(eval-after-load "go-ts-mode"
-  '(progn
-     (reformatter-define go-format :program "gofmt")
+(with-eval-after-load 'go-ts-mode
+  (require 'reformatter)
+  (reformatter-define go-format :program "goimports")
 
-     (add-hook 'go-ts-mode-hook 'mjf-go-mode-compilation)
-     (add-hook 'go-ts-mode-hook 'go-format-on-save-mode)
+  (add-hook 'go-ts-mode-hook 'mjf-go-mode-compilation)
+  (add-hook 'go-ts-mode-hook 'go-format-on-save-mode)
 
-     (bind-keys :map go-ts-mode-map ("C-c C-c" . compile))))
+  (bind-keys :map go-ts-mode-map ("C-c C-c" . compile)))
 
 (provide 'module-go)
 
