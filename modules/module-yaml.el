@@ -22,7 +22,7 @@
 ;;; Code:
 
 (use-package yaml-mode
-  :mode ("\\.yaml.template\\'" "\\.yaml.envtpl\\"))
+  :mode ("\\.yaml.template\\'" "\\.yaml.envtpl\\'"))
 
 (provide 'module-yaml)
 
