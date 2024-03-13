@@ -1,4 +1,4 @@
-;;; module-rust.el --- Packages used for rust
+;;; module-toml.el --- Packages used for golang
 
 ;; Author: Mark Feller <mark.feller@member.fsf.org>
 
@@ -21,22 +21,8 @@
 
 ;;; Code:
 
-(with-eval-after-load 'rust-ts-mode
-  (require 'reformatter)
-  (reformatter-define rust-format :program "rustfmt")
+(add-to-list 'major-mode-remap-alist '(conf-toml-mode . toml-ts-mode))
 
-  (defun mjf-rust-ts-mode-compilation ()
-    "Customize compile command for `rust-ts-mode'"
-    (set (make-local-variable 'compile-command)
-         "cargo build"))
+(provide 'module-toml)
 
-  (add-hook 'rust-ts-mode-hook 'mjf-rust-ts-mode-compilation)
-  (add-hook 'rust-ts-mode-hook 'rust-format-on-save-mode)
-
-  (bind-keys :map rust-ts-mode-map ("C-c C-c" . compile)))
-
-(add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-ts-mode))
-
-(provide 'module-rust)
-
-;;; module-rust.el ends here
+;;; module-toml.el ends here

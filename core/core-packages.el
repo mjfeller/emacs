@@ -81,6 +81,8 @@
   (use-short-answers t)                      ; enable y/n answers
   (large-file-warning-threshold 100000000)   ; warn when opening files bigger than 100MB
 
+  (treesit-font-lock-level 3)
+
   :config
   (set-frame-font "Iosevka Comfy 12" nil t)
 

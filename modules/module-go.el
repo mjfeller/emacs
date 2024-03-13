@@ -35,6 +35,9 @@
 
   (bind-keys :map go-ts-mode-map ("C-c C-c" . compile)))
 
+(add-to-list 'auto-mode-alist '("\\go.mod\\'" . go-mod-ts-mode))
+(add-to-list 'auto-mode-alist '("\\.go\\'" . go-ts-mode))
+
 (provide 'module-go)
 
 ;;; module-go.el ends here
