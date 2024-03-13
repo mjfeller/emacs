@@ -21,20 +21,19 @@
 
 ;;; Code:
 
-(defun mjf-rust-mode-compilation ()
-  "Customize compile command for `rust-mode'"
-  (set (make-local-variable 'compile-command)
-       "cargo build"))
+(with-eval-after-load 'rust-ts-mode
+  (require 'reformatter)
+  (reformatter-define rust-format :program "rustfmt")
 
-(use-package rust-mode
-  :bind
-  (:map rust-mode-map ("C-c C-c" . compile))
+  (defun mjf-rust-ts-mode-compilation ()
+    "Customize compile command for `rust-ts-mode'"
+    (set (make-local-variable 'compile-command)
+         "cargo build"))
 
-  :custom
-  (rust-format-on-save t)
+  (add-hook 'rust-ts-mode-hook 'mjf-rust-ts-mode-compilation)
+  (add-hook 'rust-ts-mode-hook 'rust-format-on-save-mode)
 
-  :hook
-  (rust-mode-hook . mjf-rust-mode-compilation))
+  (bind-keys :map rust-ts-mode-map ("C-c C-c" . compile)))
 
 (provide 'module-rust)
 

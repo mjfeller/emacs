@@ -38,6 +38,7 @@
 (require 'module-notmuch)
 (require 'module-org)
 (require 'module-osm)
+(require 'module-rust)
 (require 'module-vterm)
 (require 'module-zig)
 
