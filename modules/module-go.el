@@ -21,9 +21,6 @@
 
 ;;; Code:
 
-(reformatter-define go-format
-  :program "gofmt")
-
 (defun mjf-go-mode-compilation ()
   "Customize compile command for `go-mode'"
   (set (make-local-variable 'compile-command)
@@ -44,10 +41,14 @@
   (go-mode-hook . mjf-go-mode-compilation)
   (go-mode-hook . mjf-setup-gofmt-before-save))
 
-(add-hook 'go-ts-mode-hook 'mjf-go-mode-compilation)
-(add-hook 'go-ts-mode-hook 'go-format-on-save-mode)
+(eval-after-load "go-ts-mode"
+  '(progn
+     (reformatter-define go-format :program "gofmt")
 
-(bind-keys :map go-ts-mode-map ("C-c C-c" . compile))
+     (add-hook 'go-ts-mode-hook 'mjf-go-mode-compilation)
+     (add-hook 'go-ts-mode-hook 'go-format-on-save-mode)
+
+     (bind-keys :map go-ts-mode-map ("C-c C-c" . compile))))
 
 (provide 'module-go)
 
