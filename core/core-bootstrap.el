@@ -1,4 +1,4 @@
-;;; init.el  --- initialize
+;;; core-bootstrap.el --- bootstrap for use-package
 
 ;; Author: Mark Feller <mark.feller@member.fsf.org>
 
@@ -19,32 +19,24 @@
 
 ;;; Commentary:
 
+;; Setup Emacs package repos and grab use-package for rest of package
+;; management.
+
 ;;; Code:
 
-(message "Loading core...")
+(require 'package)
 
-(require 'core-bootstrap)
-(require 'core-defuns)
-(require 'core-packages)
-(when (eq system-type 'darwin) (require 'core-macos))
+(setq package-archives
+      '(("melpa-stable" . "https://stable.melpa.org/packages/")
+        ("melpa"        . "https://melpa.org/packages/")
+        ("gnu"          . "http://elpa.gnu.org/packages/")
+        ("org"          . "http://orgmode.org/elpa/")))
 
-(message "Loading modules...")
+(package-initialize)
 
-(require 'module-eldoc)
-(require 'module-emacs-lisp)
-(require 'module-evil)
-(require 'module-git)
-(require 'module-go)
-(require 'module-java)
-(require 'module-ledger)
-(require 'module-nix)
-(require 'module-notmuch)
-(require 'module-org)
-(require 'module-osm)
-(require 'module-rust)
-(require 'module-toml)
-(require 'module-vterm)
-(require 'module-yaml)
-(require 'module-zig)
+(require 'use-package)
+(setq use-package-always-ensure t)
 
-;;; init.el ends here
+(provide 'core-bootstrap)
+
+;;; core-bootstrap.el ends here
