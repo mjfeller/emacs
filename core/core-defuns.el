@@ -228,6 +228,13 @@ is already narrowed."
                            (line-number-at-pos end))))
              ""))))
 
+(defun mjf-project-gh-browse (&optional include-all)
+  (interactive "P")
+  (let* ((pr (project-current t))
+         (root (project-root pr))
+         (default-directory root))
+    (shell-command "gh browse" nil)))
+
 (defun ip-info (start end)
   (interactive "r")
   (let ((subnet (buffer-substring start end)))

@@ -140,12 +140,13 @@
 
   :custom
   (project-list-file "~/.cache/emacs/projects.el")
-  (project-switch-commands '((project-find-file    "Find file"      "f")
-                             (project-find-dir     "Find directory" "d")
-                             (consult-ripgrep      "Find regexp"    "g")
-                             (project-kill-buffers "Kill buffers"   "k")
-                             (multi-vterm-project  "vterm"          "v")
-                             (magit-project-status "Magit"          "m"))))
+  (project-switch-commands '((project-find-file     "Find file"      "f")
+                             (project-find-dir      "Find directory" "d")
+                             (consult-ripgrep       "Find regexp"    "g")
+                             (project-kill-buffers  "Kill buffers"   "k")
+                             (multi-vterm-project   "vterm"          "v")
+                             (magit-project-status  "Magit"          "m")
+                             (mjf-project-gh-browse "GitHub"         "M"))))
 
 (use-package modus-themes
   :config
