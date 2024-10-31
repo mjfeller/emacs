@@ -34,6 +34,7 @@
   (evil-set-initial-state 'compilation-mode 'emacs)
   (evil-set-initial-state 'grep-mode 'emacs)
   (evil-set-initial-state 'compilation-mode 'emacs)
+  (evil-set-initial-state 'xref--xref-buffer-mode 'emacs)
   (evil-mode t))
 
 (use-package evil-goggles
@@ -48,6 +49,11 @@
 (use-package evil-surround
   :config
   (global-evil-surround-mode t))
+
+(use-package evil-textobj-tree-sitter
+  :config
+  (define-key evil-outer-text-objects-map "f" (evil-textobj-tree-sitter-get-textobj ("function.outer" "class.outer")))
+  (define-key evil-inner-text-objects-map "f" (evil-textobj-tree-sitter-get-textobj ("function.inner" "class.inner"))))
 
 (provide 'module-evil)
 

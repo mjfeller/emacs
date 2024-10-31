@@ -102,7 +102,6 @@
 
   :hook
   (before-save-hook . delete-tailing-whitespace)
-  (window-setup-hook . on-after-init)
 
   :bind (("s-l" . display-line-numbers-mode)
 
@@ -136,7 +135,8 @@
 (use-package project
   :bind (("C-x p g" . consult-ripgrep)
          ("C-x p b" . consult-project-buffer)
-         ("C-x p m" . magit-project-status))
+         ("C-x p m" . magit-project-status)
+         ("C-x p M" . mjf-project-gh-browse))
 
   :custom
   (project-list-file "~/.cache/emacs/projects.el")
@@ -161,10 +161,13 @@
          ("M-."   . xref-show-definitions-function)
          ("M-,"   . xref-go-back))
 
+  :custom
+  (eglot-events-buffer-size 0)
+
   :config
   (add-to-list 'eglot-stay-out-of 'flymake)
   (add-to-list 'eglot-server-programs
-               '(nix-mode . ("nil"))
+               '(nix-ts-mode . ("nil"))
                '(java-mode . ("java-language-server"))))
 
 (use-package company
@@ -198,10 +201,11 @@
         (sort-regexp-fields t "^.*$" "[ ]*." (point) (point-max)))
       (set-buffer-modified-p nil)))
 
-  (defadvice dired-readin
-      (after dired-after-updating-hook first () activate)
+  (defun dired-readin-advice ()
     "Sort dired listings with directories first before adding marks."
-    (dired-sort-dir-first)))
+    (dired-sort-dir-first))
+
+  (advice-add 'dired-readin :after #'dired-readin-advice))
 
 (use-package helpful
   :bind (("C-h f" . helpful-function)
