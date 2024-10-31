@@ -37,14 +37,22 @@
 (if (fboundp 'set-fontset-font)
     (set-fontset-font t 'unicode "Apple Color Emoji" nil 'prepend))
 
-(use-package exec-path-from-shell
-  :custom
-  ;; speed up loads by using a non-interactive shell
-  (exec-path-from-shell-arguments nil))
+(setq exec-path '("/Users/mfeller/Development/go/bin"
+                  "/Users/mfeller/.nix-profile/bin"
+                  "/etc/profiles/per-user/mfeller/bin"
+                  "/run/current-system/sw/bin"
+                  "/nix/var/nix/profiles/default/bin"
+                  "/Users/mfeller/.local/bin"
+                  "/opt/homebrew/bin"
+                  "/opt/homebrew/sbin"
+                  "/usr/local/bin"
+                  "/usr/local/sbin"
+                  "/usr/bin"
+                  "/usr/sbin"
+                  "/bin"
+                  "/sbin"))
 
-(dolist (var '("GNUPGHOME" "NOTMUCH_CONFIG" "XDG_DOCUMENTS_DIR"))
-    (add-to-list 'exec-path-from-shell-variables var))
-  (exec-path-from-shell-initialize)
+(setenv "PATH" (mapconcat 'identity exec-path ":"))
 
 (defun finder ()
   "Opens file directory in Finder."
