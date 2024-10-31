@@ -27,10 +27,13 @@
 (require 'package)
 
 (setq package-archives
-      '(("melpa-stable" . "https://stable.melpa.org/packages/")
-        ("melpa"        . "https://melpa.org/packages/")
-        ("gnu"          . "http://elpa.gnu.org/packages/")
-        ("org"          . "http://orgmode.org/elpa/")))
+      '(
+        ;; Install all packages through nix
+        ;; ("gnu"          . "http://elpa.gnu.org/packages/")
+        ;; ("melpa-stable" . "https://stable.melpa.org/packages/")
+        ;; ("melpa"        . "https://melpa.org/packages/")
+        ;; ("org"          . "http://orgmode.org/elpa/")
+        ))
 
 (package-initialize)
 
