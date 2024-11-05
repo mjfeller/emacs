@@ -39,6 +39,7 @@
   (ledger-report-auto-refresh nil)
   (ledger-reports (mjf-ledger-reports
                    '(("bal"              "bal -V")
+                     ("tax return"       "bal -V -p 'last year' payee 'Block, Inc.'")
                      ("reg"              "reg")
                      ("stats"            "stats")
                      ("payee"            "reg @%(payee)")
