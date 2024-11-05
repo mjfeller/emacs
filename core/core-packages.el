@@ -247,6 +247,14 @@
          :map minibuffer-mode-map
          ("C-c C-o" . embark-export)))
 
+(use-package marginalia
+  :bind
+  (:map minibuffer-local-map
+        ("M-A" . marginalia-cycle))
+
+  :init
+  (marginalia-mode))
+
 (use-package corfu
   :custom
   (corfu-auto t)
