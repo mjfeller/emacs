@@ -170,17 +170,6 @@
                '(nix-ts-mode . ("nil"))
                '(java-mode . ("java-language-server"))))
 
-(use-package company
-  :custom
-  (company-idle-delay 0)
-  (company-tooltip-limit 10)
-  (company-echo-delay 0)
-  (company-tooltip-flip-when-above t)
-  (company-begin-commands '(self-insert-command))
-
-  :config
-  (global-company-mode))
-
 (use-package comment-dwim-2
   :bind (("M-;" . comment-dwim-2)))
 
@@ -225,7 +214,7 @@
 (use-package orderless
   :custom
   (completion-styles '(orderless basic))
-  (completion-category-overrides '((file (styles basic partial-completion)))))
+  (completion-category-overrides '((file (styles basic partial-completion orderless)))))
 
 (use-package vertico
   :custom
@@ -257,6 +246,25 @@
 
          :map minibuffer-mode-map
          ("C-c C-o" . embark-export)))
+
+(use-package corfu
+  :custom
+  (corfu-auto t)
+  (corfu-auto-delay 0.2)
+  (corfu-auto-prefix 0)
+  (corfu-bar-width 0.25)
+  (corfu-left-margin-width 1.5)
+  (corfu-right-margin-width 1.5)
+
+  :bind
+  (:map corfu-map
+        ("C-n" . corfu-next)
+        ("TAB" . corfu-next)
+        ("C-p" . corfu-previous)
+        ("S-TAB" . corfu-previous))
+
+  :config
+  (global-corfu-mode))
 
 (use-package embark-consult
   :hook (embark-collect-mode . consult-preview-at-point-mode))
