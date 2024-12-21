@@ -52,6 +52,8 @@
                   "/bin"
                   "/sbin"))
 
+(exec-path-from-shell-copy-env "SSH_AUTH_SOCK")
+
 (setenv "PATH" (mapconcat 'identity exec-path ":"))
 
 (defun finder ()
