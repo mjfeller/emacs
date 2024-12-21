@@ -228,6 +228,13 @@ is already narrowed."
                            (line-number-at-pos end))))
              ""))))
 
+(defun mjf-project-gh-pr-create (&optional include-all)
+  (interactive "P")
+  (let* ((pr (project-current t))
+         (root (project-root pr))
+         (default-directory root))
+    (shell-command "gh pr create --fill --web" nil)))
+
 (defun mjf-project-gh-browse (&optional include-all)
   (interactive "P")
   (let* ((pr (project-current t))
@@ -235,12 +242,25 @@ is already narrowed."
          (default-directory root))
     (shell-command "gh browse" nil)))
 
+(defun mjf-kubernetes-context-switch ()
+  (interactive "")
+  (let* ((output (shell-command-to-string "kubectl config get-contexts -o name"))
+         (lines (split-string output "\n" t))
+         (context (completing-read "Context: " lines)))
+    (shell-command (format "kubectl config use-context %s" context))))
+
 (defun ip-info (start end)
   (interactive "r")
   (let ((subnet (buffer-substring start end)))
     (async-shell-command
      (format "nix run 'nixpkgs#ipcalc' -- -i %s" subnet)
      (format "*ip info %s*" subnet))))
+
+(defun sq-whatis (app)
+  (interactive "sApp: ")
+  (async-shell-command
+   (format "sq whatis %s" app)
+   (format "*app info %s*" app)))
 
 (provide 'core-defuns)
 

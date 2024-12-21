@@ -102,6 +102,7 @@
 
   :hook
   (before-save-hook . delete-tailing-whitespace)
+  (prog-mode-hook . subword-mode)
 
   :bind (("s-l" . display-line-numbers-mode)
 
@@ -130,13 +131,16 @@
 
          ("M-P" . mjf/pash-copy)
          ("s-W" . mjf/focused)
-         ("s-n" . narrow-or-widen-dwim)))
+         ("s-n" . narrow-or-widen-dwim)
+
+         ("C-c k k" . mjf-kubernetes-context-switch)))
 
 (use-package project
   :bind (("C-x p g" . consult-ripgrep)
          ("C-x p b" . consult-project-buffer)
          ("C-x p m" . magit-project-status)
-         ("C-x p M" . mjf-project-gh-browse))
+         ("C-x p M" . mjf-project-gh-browse)
+         ("C-x p P" . mjf-project-gh-pr-create))
 
   :custom
   (project-list-file "~/.cache/emacs/projects.el")
@@ -146,7 +150,8 @@
                              (project-kill-buffers  "Kill buffers"   "k")
                              (multi-vterm-project   "vterm"          "v")
                              (magit-project-status  "Magit"          "m")
-                             (mjf-project-gh-browse "GitHub"         "M"))))
+                             (mjf-project-gh-browse "GitHub"         "M")
+                             (mjf-project-gh-pr-create "GitHub PR"      "P"))))
 
 (use-package modus-themes
   :config
@@ -190,11 +195,7 @@
         (sort-regexp-fields t "^.*$" "[ ]*." (point) (point-max)))
       (set-buffer-modified-p nil)))
 
-  (defun dired-readin-advice ()
-    "Sort dired listings with directories first before adding marks."
-    (dired-sort-dir-first))
-
-  (advice-add 'dired-readin :after #'dired-readin-advice))
+  (advice-add 'dired-readin :after #'dired-sort-dir-first))
 
 (use-package helpful
   :bind (("C-h f" . helpful-function)
@@ -203,6 +204,9 @@
          ("C-h v" . helpful-variable)))
 
 (use-package rg
+  :custom
+  (rg-executable "/run/current-system/sw/bin/rg")
+
   :config
   (rg-enable-default-bindings))
 
@@ -273,6 +277,9 @@
 
   :config
   (global-corfu-mode))
+
+(use-package cape
+  :bind ("C-c p" . cape-prefix-map))
 
 (use-package embark-consult
   :hook (embark-collect-mode . consult-preview-at-point-mode))

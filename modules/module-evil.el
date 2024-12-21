@@ -35,7 +35,14 @@
   (evil-set-initial-state 'grep-mode 'emacs)
   (evil-set-initial-state 'compilation-mode 'emacs)
   (evil-set-initial-state 'xref--xref-buffer-mode 'emacs)
-  (evil-mode t))
+  (evil-mode t)
+
+  (define-key evil-normal-state-map (kbd "C-n") nil)
+  (define-key evil-insert-state-map (kbd "C-n") nil)
+  (define-key evil-replace-state-map (kbd "C-n") nil)
+  (define-key evil-normal-state-map (kbd "C-p") nil)
+  (define-key evil-insert-state-map (kbd "C-p") nil)
+  (define-key evil-replace-state-map (kbd "C-p") nil))
 
 (use-package evil-goggles
   :custom
