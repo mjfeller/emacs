@@ -133,7 +133,16 @@
          ("s-W" . mjf/focused)
          ("s-n" . narrow-or-widen-dwim)
 
-         ("C-c k k" . mjf-kubernetes-context-switch)))
+         ("C-c k k" . mjf-kubernetes-context-switch)
+
+         ("s-H" . (lambda () (interactive) (point-to-register ?h)))
+         ("s-h" . (lambda () (interactive) (jump-to-register ?h)))
+         ("s-J" . (lambda () (interactive) (point-to-register ?j)))
+         ("s-j" . (lambda () (interactive) (jump-to-register ?j)))
+         ("s-K" . (lambda () (interactive) (point-to-register ?k)))
+         ("s-k" . (lambda () (interactive) (jump-to-register ?k)))
+         ("s-L" . (lambda () (interactive) (point-to-register ?l)))
+         ("s-l" . (lambda () (interactive) (jump-to-register ?l)))))
 
 (use-package project
   :bind (("C-x p g" . consult-ripgrep)
