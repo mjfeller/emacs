@@ -140,18 +140,21 @@
          ("C-x p b" . consult-project-buffer)
          ("C-x p m" . magit-project-status)
          ("C-x p M" . mjf-project-gh-browse)
-         ("C-x p P" . mjf-project-gh-pr-create))
+         ("C-x p P" . mjf-project-gh-pr-create)
+         ("C-x p C" . mjf-project-kochiku-canary))
 
   :custom
   (project-list-file "~/.cache/emacs/projects.el")
-  (project-switch-commands '((project-find-file     "Find file"      "f")
-                             (project-find-dir      "Find directory" "d")
-                             (consult-ripgrep       "Find regexp"    "g")
-                             (project-kill-buffers  "Kill buffers"   "k")
-                             (multi-vterm-project   "vterm"          "v")
-                             (magit-project-status  "Magit"          "m")
-                             (mjf-project-gh-browse "GitHub"         "M")
-                             (mjf-project-gh-pr-create "GitHub PR"      "P"))))
+  (project-switch-commands '((project-find-file          "Find file"      "f")
+                             (project-find-dir           "Find directory" "d")
+                             (project-compile            "Compile"        "c")
+                             (consult-ripgrep            "Find regexp"    "g")
+                             (project-kill-buffers       "Kill buffers"   "k")
+                             (multi-vterm-project        "vterm"          "v")
+                             (magit-project-status       "Magit"          "m")
+                             (mjf-project-gh-browse      "GitHub"         "M")
+                             (mjf-project-gh-pr-create   "GitHub PR"      "P")
+                             (mjf-project-kochiku-canary "Kochiku Canary" "C"))))
 
 (use-package modus-themes
   :config

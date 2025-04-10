@@ -242,6 +242,13 @@ is already narrowed."
          (default-directory root))
     (shell-command "gh browse" nil)))
 
+(defun mjf-project-kochiku-canary (&optional include-all)
+  (interactive "P")
+  (let* ((pr (project-current t))
+         (root (project-root pr))
+         (default-directory root))
+    (shell-command "sq kochiku --canary" nil)))
+
 (defun mjf-kubernetes-context-switch ()
   (interactive "")
   (let* ((output (shell-command-to-string "kubectl config get-contexts -o name"))
