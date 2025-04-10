@@ -23,7 +23,6 @@
 
 (message "Loading core...")
 
-(require 'core-bootstrap)
 (require 'core-defuns)
 (require 'core-packages)
 (when (eq system-type 'darwin) (require 'core-macos))
