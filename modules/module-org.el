@@ -21,14 +21,62 @@
 
 ;;; Code:
 
-(defun mjf/org-summary-todo (n-done n-not-done)
+(defvar mjf-org-custom-daily-agenda
+  `((tags-todo "*"
+               ((org-agenda-overriding-header "Important tasks without a date\n")
+                (org-agenda-skip-function #'mjf-org-agenda-include-priority-no-timestamp)
+                (org-agenda-block-separator nil)))
+    (agenda "" ((org-agenda-overriding-header "\nToday's agenda\n")
+                (org-agenda-span 1)
+                (org-deadline-warning-days 0)
+                (org-agenda-block-separator nil)
+                (org-scheduled-past-days 0)
+                (org-agenda-day-face-function (lambda (date) 'org-agenda-date))
+                (org-agenda-format-date "%A %-e %B %Y")))
+    (agenda "" ((org-agenda-overriding-header "\nNext three days\n")
+                (org-agenda-start-on-weekday nil)
+                (org-agenda-start-day nil)
+                (org-agenda-start-day "+1d")
+                (org-agenda-span 3)
+                (org-deadline-warning-days 0)
+                (org-agenda-block-separator nil)
+                (org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))))
+    (agenda "" ((org-agenda-overriding-header "\nUpcoming deadlines (+14d)\n")
+                (org-agenda-time-grid nil)
+                (org-agenda-start-on-weekday nil)
+                ;; We don't want to replicate the previous section's
+                ;; three days, so we start counting from the day after.
+                (org-agenda-start-day "+4d")
+                (org-agenda-span 14)
+                (org-agenda-show-all-dates nil)
+                (org-deadline-warning-days 0)
+                (org-agenda-block-separator nil)
+                (org-agenda-entry-types '(:deadline))
+                (org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done)))))
+  "Custom agenda for use in `org-agenda-custom-commands'.")
+
+(defun mjf-org-summary-todo (n-done n-not-done)
   "Switch entry to DONE when all subentries are done, to TODO otherwise."
   (let (org-log-done org-log-states)   ; turn off logging
     (org-todo (if (= n-not-done 0) "DONE" "TODO"))))
 
+(defun mjf-org-agenda ()
+  (interactive)
+  (org-agenda nil "A"))
+
+(defun mjf-org-agenda-include-priority-no-timestamp ()
+  "Return nil if heading has a priority but no timestamp.
+Otherwise, return the buffer position from where the search should
+continue, per `org-agenda-skip-function'."
+  (let ((point (point)))
+    (if (and (eq (nth 3 (org-heading-components)) ?A)
+             (not (org-get-deadline-time point))
+             (not (org-get-scheduled-time point)))
+        nil
+      (line-beginning-position 2))))
+
 (use-package org
   :bind (("C-c l" . org-store-link)
-         ("C-c a" . org-agenda)
          ("C-c c" . org-capture)
          :map org-src-mode-map
          ("C-x C-s" . org-edit-src-exit))
@@ -46,11 +94,16 @@
   (setq org-src-fontify-natively t)
   (setq org-hide-emphasis-markers t)
 
-  (add-hook 'org-after-todo-statistics-hook 'mjf/org-summary-todo)
-  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+  ;; (add-hook 'org-after-todo-statistics-hook 'mjf-org-summary-todo)
+  (setq org-enforce-todo-dependencies t)
+  (setq org-enforce-todo-checkbox-dependencies t)
+  (setq org-use-fast-todo-selection 'expert)
+  (setq org-default-priority ?A)
+  (setq org-priority-faces nil)
 
-  (setq mjf/org-work-file (format "%s/work.org" (getenv "XDG_DOCUMENTS_DIR")))
-  (setq mjf/org-life-file (format "%s/life.org" (getenv "XDG_DOCUMENTS_DIR")))
+  (setq mjf-org-work-file (format "%s/Documents/work.org" (getenv "HOME")))
+  (setq mjf-org-life-file (format "%s/Documents/life.org" (getenv "HOME")))
+  (setq org-agenda-files `(,mjf-org-work-file ,mjf-org-life-file))
 
   ;; personal capture templates
   (setq org-capture-templates
@@ -63,19 +116,16 @@
            :jump-to-captured t)
 
           ;; unfiled work items
-          ("w" "Work" entry (file+headline mjf/org-work-file "Unread")
+          ("w" "Work" entry (file+headline mjf-org-work-file "Unread")
            "* TODO %?\n  %i\n")
 
           ;; random thoughts I'd like to capture
-          ("t" "Thought" entry (file+headline mjf/org-work-file "Thoughts")
+          ("t" "Thought" entry (file+headline mjf-org-work-file "Thoughts")
            "* %?\n  %i\n")
 
           ;; unfiled work items in my life
-          ("l" "Life" entry (file+headline mjf/org-life-file "Inbox")
-           "* TODO %?\n  %i\n")
-
-          ("j" "Journal" entry (file+datetree mjf/org-life-file)
-           "* TODO %?\n")))
+          ("l" "Life" entry (file+headline mjf-org-life-file "Inbox")
+           "* TODO %?\n  %i\n")))
 
   ;; when refiling an org header don't search more than 3 levels deep
   (setq org-refile-targets
@@ -91,15 +141,37 @@
   (set-face-attribute 'org-document-title nil :height 1)
   (set-face-attribute 'org-checkbox nil :box nil))
 
-(use-package org-bullets
-  :config
-  (setq org-bullets-bullet-list '("●" "○" "◉" "•"))
+(use-package org-agenda
+  :bind
+  (:map global-map
+        ("C-c A" . org-agenda)
+        ("C-c a" . mjf-org-agenda))
 
-  ;; bullets on lists
-  (font-lock-add-keywords
-   'org-mode
-   '(("^ +\\([-*]\\) "
-      (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•")))))))
+  :config
+  (setq org-agenda-custom-commands
+        `(("A" "Daily agenda and top priority tasks"
+           ,mjf-org-custom-daily-agenda
+           ((org-agenda-fontify-priorities nil)
+            (org-agenda-prefix-format "	 %t %s")
+            (org-agenda-dim-blocked-tasks nil)))))
+
+
+  (setq org-agenda-sorting-strategy
+        '(((agenda habit-down time-up priority-down category-keep)
+           (todo priority-down category-keep)
+           (tags priority-down category-keep)
+           (search category-keep))))
+  (setq org-agenda-breadcrumbs-separator "->")
+  (setq org-agenda-todo-keyword-format "%-1s")
+  (setq org-agenda-fontify-priorities 'cookies)
+  (setq org-agenda-category-icon-alist nil)
+  (setq org-agenda-remove-times-when-in-prefix nil)
+  (setq org-agenda-remove-timeranges-from-blocks nil)
+  (setq org-agenda-compact-blocks nil)
+  (setq org-agenda-block-separator ?—)
+
+  (setq org-agenda-dim-blocked-tasks t)
+  )
 
 (provide 'module-org)
 
