@@ -187,7 +187,7 @@
 
   :custom
   (wdired-use-dired-vertical-movement 'sometimes)
-  (dired-listing-switches "-la")
+  (dired-listing-switches "-lah")
 
   :config
   (defun dired-sort-dir-first ()
