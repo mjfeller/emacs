@@ -55,9 +55,10 @@
   :bind (:map go-ts-mode-map ("C-c C-c" . compile))
 
   :hook
-  (go-ts-mode-hook . mjf-setup-go-mode-compilation)
-  (go-ts-mode-hook . go-format-on-save-mode)
-  (go-ts-mode-hook . corfu-mode)
+  (go-ts-mode . mjf-setup-go-mode-compilation)
+  (go-ts-mode . go-format-on-save-mode)
+  (go-ts-mode . corfu-mode)
+  (go-ts-mode . eglot-ensure)
 
   :mode
   ("\\.go\\'"    . go-ts-mode)
