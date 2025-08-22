@@ -1,4 +1,4 @@
-;;; init.el  --- initialize
+;;; init.el --- Emacs initialization file -*- lexical-binding: t; -*-
 
 ;; Author: Mark Feller <mark.feller@member.fsf.org>
 

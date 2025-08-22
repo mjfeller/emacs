@@ -1,4 +1,4 @@
-;;; module-emacs-lisp.el
+;;; module-emacs-lisp.el --- Emacs Lisp development configuration -*- lexical-binding: t; -*-
 
 ;; Author: Mark Feller <mark.feller@member.fsf.org>
 

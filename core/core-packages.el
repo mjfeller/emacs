@@ -1,4 +1,4 @@
-;;; core-packages.el --- Core packages for my Emacs config
+;;; core-packages.el --- Core packages for my Emacs config -*- lexical-binding: t; -*-
 
 ;; Author: Mark Feller <mark.feller@member.fsf.org>
 
@@ -288,7 +288,10 @@
         ("C-n" . corfu-next)
         ("TAB" . corfu-next)
         ("C-p" . corfu-previous)
-        ("S-TAB" . corfu-previous)))
+        ("S-TAB" . corfu-previous))
+
+  :config
+  (global-corfu-mode))
 
 (use-package cape
   :bind ("C-c p" . cape-prefix-map))

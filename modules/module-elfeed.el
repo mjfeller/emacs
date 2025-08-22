@@ -1,4 +1,4 @@
-;;; module-elfeed.el
+;;; module-elfeed.el --- Elfeed RSS reader configuration -*- lexical-binding: t; -*-
 
 ;; Author: Mark Feller <mark.feller@member.fsf.org>
 

@@ -1,4 +1,4 @@
-;;; early-init.el --- early emacs startup configuration
+;;; early-init.el --- Early Emacs startup configuration -*- lexical-binding: t; -*-
 
 ;; Author: Mark Feller <mark.feller@member.fsf.org>
 

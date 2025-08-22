@@ -1,4 +1,4 @@
-;;; module-evil.el
+;;; module-evil.el --- Configuration -*- lexical-binding: t; -*-
 
 ;; Author: Mark Feller <mark.feller@member.fsf.org>
 

@@ -1,4 +1,4 @@
-;;; core-defuns.el --- personal defuns
+;;; core-defuns.el --- Personal utility functions -*- lexical-binding: t; -*-
 
 ;; Author: Mark Feller <mark.feller@member.fsf.org>
 

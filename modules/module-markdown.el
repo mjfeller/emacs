@@ -1,4 +1,4 @@
-;;; module-markdown.el
+;;; module-markdown.el --- Configuration -*- lexical-binding: t; -*-
 
 ;; Author: Mark Feller <mark.feller@member.fsf.org>
 

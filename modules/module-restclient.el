@@ -1,4 +1,4 @@
-;;; module-restclient.el
+;;; module-restclient.el --- Configuration -*- lexical-binding: t; -*-
 
 ;; Author: Mark Feller <mark.feller@member.fsf.org>
 

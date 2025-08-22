@@ -1,4 +1,4 @@
-;;; module-lang.el --- Packages used for language
+;;; module-lang.el --- Packages used for language configuration -*- lexical-binding: t; -*-
 
 ;; Author: Mark Feller <mark.feller@member.fsf.org>
 

@@ -1,4 +1,4 @@
-;;; core-osx.el --- solarized module for my emacs
+;;; core-macos.el --- macOS-specific configuration -*- lexical-binding: t; -*-
 
 ;; Author: Mark Feller <mark.feller@member.fsf.org>
 
@@ -89,4 +89,4 @@
 
 (provide 'core-macos)
 
-;;; core-osx.el ends here
+;;; core-macos.el ends here

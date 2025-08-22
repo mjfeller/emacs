@@ -1,4 +1,4 @@
-;;; module-osm.el
+;;; module-osm.el --- OSM (OpenStreetMap) configuration -*- lexical-binding: t; -*-
 
 ;; Author: Mark Feller <mark.feller@member.fsf.org>
 
