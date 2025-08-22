@@ -150,7 +150,8 @@
          ("C-x p m" . magit-project-status)
          ("C-x p M" . mjf-project-gh-browse)
          ("C-x p P" . mjf-project-gh-pr-create)
-         ("C-x p C" . mjf-project-kochiku-canary))
+         ("C-x p C" . mjf-project-kochiku-canary)
+         ("C-x p G" . mjf-clone-project))
 
   :custom
   (project-list-file "~/.cache/emacs/projects.el")
@@ -216,6 +217,8 @@
          ("C-h v" . helpful-variable)))
 
 (use-package rg
+  :defer t
+
   :custom
   (rg-executable "/run/current-system/sw/bin/rg")
 
@@ -296,7 +299,8 @@
 (use-package embark-consult
   :hook (embark-collect-mode . consult-preview-at-point-mode))
 
-(use-package olivetti)
+(use-package olivetti
+  :defer t)
 
 (use-package spacious-padding
   :custom
@@ -304,6 +308,32 @@
                                        :mode-line-inactive vertical-border))
   :config
   (spacious-padding-mode t))
+
+(use-package eldoc
+  :config (global-eldoc-mode))
+
+(use-package vterm
+  :bind (("s-U" . vterm-other-window)
+
+         :map vterm-mode-map
+         ("M-P" . mjf/pash-copy))
+
+  :custom
+  (vterm-max-scrollback 100000) ; max scrollback vterm supports
+
+  :config
+  (evil-set-initial-state 'vterm-mode 'emacs)
+
+  ;; prefer vterm windows to act as dedicated popup windows to the right
+  (add-to-list 'display-buffer-alist '("\\*vterm\\*"
+                                       (display-buffer-reuse-window display-buffer-in-direction)
+                                       (side . right)
+                                       (dedicated . t))))
+
+(use-package multi-vterm
+  :bind (("s-u" . multi-vterm-next)
+         ("s-i" . multi-vterm-prev)
+         ("s-y" . multi-vterm)))
 
 (provide 'core-packages)
 

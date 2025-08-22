@@ -213,11 +213,15 @@ is already narrowed."
       (olivetti-mode 1)
       (setq mode-line-format nil))))
 
-(defun gh-browse ()
+(defun mjf-gh-browse ()
+  "Browse the current file on the GitHub web UI with the current commit. If
+a region is selected then the region will be selected in the web
+UI. Useful for linking code."
   (interactive)
   (shell-command
    (concat "gh browse "
            (file-name-nondirectory (buffer-file-name))
+           ;; (format " --commit %s" (magit-rev-parse "--short" "HEAD"))
            (if mark-active
                (format ":%s-%s"
                        (line-number-at-pos (region-beginning))
@@ -229,25 +233,41 @@ is already narrowed."
              ""))))
 
 (defun mjf-project-gh-pr-create (&optional include-all)
+  "Open a PR on GitHub using your first commit message as the title and
+body of the PR."
   (interactive "P")
   (let* ((pr (project-current t))
          (root (project-root pr))
          (default-directory root))
-    (shell-command "gh pr create --fill --web" nil)))
+    (shell-command "gh pr create --fill-first --web" nil)))
 
 (defun mjf-project-gh-browse (&optional include-all)
+  "Open the current project on GitHub."
   (interactive "P")
   (let* ((pr (project-current t))
          (root (project-root pr))
-         (default-directory root))
-    (shell-command "gh browse" nil)))
+         (default-directory root)
+         (branch (magit-get-current-branch)))
+    (shell-command (format "gh browse --branch %s" branch) nil)))
 
 (defun mjf-project-kochiku-canary (&optional include-all)
+  "Open the current commits kochiku build pipeline."
   (interactive "P")
   (let* ((pr (project-current t))
          (root (project-root pr))
          (default-directory root))
     (shell-command "sq kochiku --canary" nil)))
+
+(defun mjf-clone-project (repo-name)
+  "Clone a squareup repo into the Developement directory and add it as a
+project."
+  (interactive "sRepo name: ")
+  (let* ((base (expand-file-name "~/Development/"))
+         (dir (expand-file-name repo-name base))
+         (url (format "org-49461806@github.com:squareup/%s.git" repo-name)))
+    (progn
+      (shell-command (format "git clone %s %s" url dir))
+      (project--remember-dir dir))))
 
 (defun mjf-kubernetes-context-switch ()
   (interactive "")
@@ -255,6 +275,12 @@ is already narrowed."
          (lines (split-string output "\n" t))
          (context (completing-read "Context: " lines)))
     (shell-command (format "kubectl config use-context %s" context))))
+
+(defun mjf-display-ansi-colors ()
+  "Interpret ANSI color escape sequences in the current buffer."
+  (interactive)
+  (let ((inhibit-read-only t))
+    (ansi-color-apply-on-region (point-min) (point-max))))
 
 (defun ip-info (start end)
   (interactive "r")

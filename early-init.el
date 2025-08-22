@@ -23,7 +23,7 @@
 
 ;;; Code:
 
-(defvar emacs-dir (file-name-directory "~/.config/emacs/")
+(defvar emacs-dir (expand-file-name "~/.config/emacs/")
   "The root dir of the Emacs distribution.")
 
 (defvar core-dir (expand-file-name "core" emacs-dir)
@@ -43,6 +43,7 @@
 (add-to-list 'load-path modules-dir)
 (add-to-list 'load-path lisp-dir)
 
+(setq use-package-compute-statistics t)
 (setq gc-cons-threshold (* 1000 1000 50))                    ; reduce frequency of garbage collection
 (setq gc-cons-percentage 0.1)
 (setq package-user-dir "~/.cache/emacs/elpa")                ; move packages to the cache directory
@@ -65,18 +66,16 @@
 (setq default-frame-alist '((background-color . "#000000")))
 
 (when (eq system-type 'darwin)
-  (add-to-list 'default-frame-alist
-               '(ns-appearance . dark)
-               '(ns-transparent-titlebar . t)))
+  (add-to-list 'default-frame-alist '(ns-appearance . dark))
+  (add-to-list 'default-frame-alist '((ns-transparent-titlebar . t))))
 
 (unless (eq system-type 'darwin)
-  (add-to-list 'default-frame-alist
-               '(undecorated . t)))
+  (add-to-list 'default-frame-alist '(undecorated . t)))
 
 ;; setup modeline before the default frame has been initialized
 (require 'prot-modeline)
-(setq mode-line-compact nil) ; Emacs 28
-(setq mode-line-right-align-edge 'right-margin) ; Emacs 30
+(when (>= emacs-major-version 28) (setq mode-line-compact nil))
+(when (>= emacs-major-version 30) (setq mode-line-right-align-edge 'right-margin))
 (setq-default mode-line-format
               '("%e"
                 prot-modeline-kbd-macro
