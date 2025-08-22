@@ -83,7 +83,10 @@
 (use-package nix-ts-mode
   :mode
   ("\\.nix\\'"       . nix-ts-mode)
-  ("\\flake.lock\\'" . json-ts-mode))
+  ("\\flake.lock\\'" . json-ts-mode)
+
+  :hook
+  (nix-ts-mode-hook . corfu-mode))
 
 ;; protobuf
 
@@ -101,6 +104,7 @@
   :hook
   (rust-ts-mode-hook . mjf-setup-rust-ts-mode-compilation)
   (rust-ts-mode-hook . rust-format-on-save-mode)
+  (rust-ts-mode-hook . corfu-mode)
 
   :mode
   ("\\.rs\\'" . rust-ts-mode)
@@ -133,6 +137,7 @@
 
   :hook
   (zig-mode-hook . mjf-setup-zig-mode-compilation)
+  (zig-mode-hook . corfu-mode)
 
   :init
   (mjf-ensure-tool "rustfmt")

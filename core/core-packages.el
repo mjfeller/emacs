@@ -288,10 +288,7 @@
         ("C-n" . corfu-next)
         ("TAB" . corfu-next)
         ("C-p" . corfu-previous)
-        ("S-TAB" . corfu-previous))
-
-  :config
-  (global-corfu-mode))
+        ("S-TAB" . corfu-previous)))
 
 (use-package cape
   :bind ("C-c p" . cape-prefix-map))
