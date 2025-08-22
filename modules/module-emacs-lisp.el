@@ -26,7 +26,8 @@
   (global-paren-face-mode t)
   (set-face-attribute 'parenthesis nil :inherit 'line-number))
 
-(use-package macrostep)
+(use-package macrostep
+  :defer t)
 
 (provide 'module-emacs-lisp)
 

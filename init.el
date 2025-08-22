@@ -29,21 +29,13 @@
 
 (message "Loading modules...")
 
-(require 'module-eldoc)
 (require 'module-emacs-lisp)
 (require 'module-evil)
 (require 'module-git)
-(require 'module-go)
-(require 'module-java)
+(require 'module-lang)
 (require 'module-ledger)
-(require 'module-nix)
 (require 'module-notmuch)
 (require 'module-org)
 (require 'module-osm)
-(require 'module-rust)
-(require 'module-toml)
-(require 'module-vterm)
-(require 'module-yaml)
-(require 'module-zig)
 
 ;;; init.el ends here

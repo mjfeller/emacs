@@ -27,7 +27,8 @@
   (transient-history-file "~/.cache/emacs/transient/history.el")
   (transient-display-buffer-action '(display-buffer-below-selected)))
 
-(use-package git-timemachine)
+(use-package git-timemachine
+  :defer t)
 
 (provide 'module-git)
 
