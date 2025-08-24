@@ -164,10 +164,6 @@ is already narrowed."
 ;; keymap, that's how much I like this command. Only
 ;; copy it if that's what you want.
 (define-key ctl-x-map "n" #'narrow-or-widen-dwim)
-(add-hook 'LaTeX-mode-hook
-          (lambda ()
-            (define-key LaTeX-mode-map "\C-xn"
-              nil)))
 
 (defun toggle-modeline ()
   (interactive)
@@ -193,16 +189,16 @@ is already narrowed."
 (defun disable-line-numbers ()
   (display-line-numbers-mode -1))
 
-(defun mjf/pash-copy ()
+(defun mjf-pash-copy ()
   (interactive)
   (let ((arg (completing-read "" (mjf/pash-list))))
     (shell-command-to-string (format "pash copy %s" arg))))
 
-(defun mjf/pash-list ()
+(defun mjf-pash-list ()
   (split-string
    (shell-command-to-string "pash list") "\n"))
 
-(defun mjf/focused ()
+(defun mjf-focused ()
   (interactive)
   (if (bound-and-true-p olivetti-mode)
       (progn

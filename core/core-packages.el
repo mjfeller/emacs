@@ -129,8 +129,8 @@
          ("s-t" . toggle-window-split)
          ("s-<return>" . toggle-fullscreen)
 
-         ("M-P" . mjf/pash-copy)
-         ("s-W" . mjf/focused)
+         ("M-P" . mjf-pash-copy)
+         ("s-W" . mjf-focused)
          ("s-n" . narrow-or-widen-dwim)
 
          ("C-c k k" . mjf-kubernetes-context-switch)
@@ -169,24 +169,6 @@
 (use-package modus-themes
   :config
   (load-theme 'modus-vivendi t))
-
-(use-package eglot
-  :bind (; mode map bindings
-         :map eglot-mode-map
-         ("C-c r" . eglot-rename)
-         ("C-c o" . eglot-code-action-organize-imports)
-         ("C-c h" . eldoc)
-         ("M-."   . xref-show-definitions-function)
-         ("M-,"   . xref-go-back))
-
-  :custom
-  (eglot-events-buffer-size 0)
-
-  :config
-  (add-to-list 'eglot-stay-out-of 'flymake)
-  (add-to-list 'eglot-server-programs
-               '(nix-ts-mode . ("nil"))
-               '(java-mode . ("java-language-server"))))
 
 (use-package comment-dwim-2
   :bind (("M-;" . comment-dwim-2)))
@@ -266,6 +248,9 @@
          :map minibuffer-mode-map
          ("C-c C-o" . embark-export)))
 
+(use-package embark-consult
+  :hook (embark-collect-mode . consult-preview-at-point-mode))
+
 (use-package marginalia
   :bind
   (:map minibuffer-local-map
@@ -290,14 +275,11 @@
         ("C-p" . corfu-previous)
         ("S-TAB" . corfu-previous))
 
-  :config
+  :init
   (global-corfu-mode))
 
 (use-package cape
   :bind ("C-c p" . cape-prefix-map))
-
-(use-package embark-consult
-  :hook (embark-collect-mode . consult-preview-at-point-mode))
 
 (use-package olivetti
   :defer t)

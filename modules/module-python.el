@@ -27,7 +27,7 @@
   (pyenv-mode-set global-pyenv)
   (defvar pyenv-current-version nil global-pyenv))
 
-(defun mjf/pyenv-activate-current-project ()
+(defun mjf-pyenv-activate-current-project ()
   "Automatically activates pyenv version if .python-version file exists."
   (interactive)
   (f-traverse-upwards
@@ -48,18 +48,7 @@
 
   ;; Enable hideshow minor mode in python for folding and unfolding
   (add-hook 'python-mode-hook 'hs-minor-mode)
-  (add-hook 'python-mode-hook 'subword-mode)
-
-  (add-hook
-   'python-mode-hook
-   (lambda ()
-     (setq pretty-symbols-alist '())
-     (mapc (lambda (pair) (push pair prettify-symbols-alist))
-           '(;; Syntax
-             ("lambda" . ?λ)
-             (">="     . ?≥)
-             ("<="     . ?≤)
-             ("->"     . ?➜))))))
+  (add-hook 'python-mode-hook 'subword-mode))
 
 (use-package pip-requirements
   :config

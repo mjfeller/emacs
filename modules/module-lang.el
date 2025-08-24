@@ -43,6 +43,25 @@
   (unless (executable-find tool-name)
     (message "Warning: %s not found. Some features may not work." tool-name)))
 
+;; eglot
+
+(use-package eglot
+  :bind (; mode map bindings
+         :map eglot-mode-map
+         ("C-c r" . eglot-rename)
+         ("C-c o" . eglot-code-action-organize-imports)
+         ("C-c h" . eldoc)
+         ("M-,"   . xref-go-back))
+
+  :custom
+  (eglot-events-buffer-size 0)
+
+  :config
+  (add-to-list 'eglot-stay-out-of 'flymake)
+  (add-to-list 'eglot-server-programs
+               '(nix-ts-mode . ("nil"))
+               '(java-mode . ("java-language-server"))))
+
 ;; csv
 
 (use-package csv-mode)
@@ -57,8 +76,8 @@
   :hook
   (go-ts-mode . mjf-setup-go-mode-compilation)
   (go-ts-mode . go-format-on-save-mode)
-  (go-ts-mode . corfu-mode)
   (go-ts-mode . eglot-ensure)
+  (go-ts-mode . corfu-mode)
 
   :mode
   ("\\.go\\'"    . go-ts-mode)
@@ -87,7 +106,7 @@
   ("\\flake.lock\\'" . json-ts-mode)
 
   :hook
-  (nix-ts-mode-hook . corfu-mode))
+  (nix-ts-mode . corfu-mode))
 
 ;; protobuf
 
@@ -103,9 +122,9 @@
   :bind (:map rust-ts-mode-map ("C-c C-c" . compile))
 
   :hook
-  (rust-ts-mode-hook . mjf-setup-rust-ts-mode-compilation)
-  (rust-ts-mode-hook . rust-format-on-save-mode)
-  (rust-ts-mode-hook . corfu-mode)
+  (rust-ts-mode . mjf-setup-rust-ts-mode-compilation)
+  (rust-ts-mode . rust-format-on-save-mode)
+  (rust-ts-mode . corfu-mode)
 
   :mode
   ("\\.rs\\'" . rust-ts-mode)
@@ -137,8 +156,8 @@
   :bind (:map zig-mode-map ("C-c C-c" . compile))
 
   :hook
-  (zig-mode-hook . mjf-setup-zig-mode-compilation)
-  (zig-mode-hook . corfu-mode)
+  (zig-mode . mjf-setup-zig-mode-compilation)
+  (zig-mode . corfu-mode)
 
   :init
   (mjf-ensure-tool "rustfmt")
