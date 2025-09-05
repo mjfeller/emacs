@@ -291,6 +291,14 @@ project."
    (format "sq whatis %s" app)
    (format "*app info %s*" app)))
 
+(defun vterm-less (content)
+  (let ((less-buffer (get-buffer-create (make-temp-name "vterm-less-"))))
+    (switch-to-buffer less-buffer)
+    (special-mode)
+    (insert (base64-decode-string content))))
+
+;(add-to-list 'vterm-eval-cmds (list "less" #'vterm-less))
+
 (provide 'core-defuns)
 
 ;;; core-defuns.el ends here

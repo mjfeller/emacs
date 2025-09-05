@@ -134,6 +134,7 @@
          ("s-n" . narrow-or-widen-dwim)
 
          ("C-c k k" . mjf-kubernetes-context-switch)
+         ("C-x C-b" . ibuffer)
 
          ("s-H" . (lambda () (interactive) (point-to-register ?h)))
          ("s-h" . (lambda () (interactive) (jump-to-register ?h)))
@@ -143,6 +144,14 @@
          ("s-k" . (lambda () (interactive) (jump-to-register ?k)))
          ("s-L" . (lambda () (interactive) (point-to-register ?l)))
          ("s-l" . (lambda () (interactive) (jump-to-register ?l)))))
+
+(use-package ibuffer
+  :hook
+  (ibuffer . ibuffer-do-sort-by-alphabetic))
+
+;; (use-package ibuffer-project
+;;   :hook
+;;   (ibuffer . ibuffer-project-set-filter-groups))
 
 (use-package project
   :bind (("C-x p g" . consult-ripgrep)
@@ -263,7 +272,7 @@
   :custom
   (corfu-auto t)
   (corfu-auto-delay 0.2)
-  (corfu-auto-prefix 0)
+  (corfu-auto-prefix 3)
   (corfu-bar-width 0.25)
   (corfu-left-margin-width 1.5)
   (corfu-right-margin-width 1.5)
@@ -300,11 +309,16 @@
          :map vterm-mode-map
          ("M-P" . mjf/pash-copy))
 
+  :hook
+  (vterm-mode . subword-mode)
+  (vterm-mode . with-editor-export-editor)
+
   :custom
   (vterm-max-scrollback 100000) ; max scrollback vterm supports
 
   :config
   (evil-set-initial-state 'vterm-mode 'emacs)
+  (add-to-list 'vterm-eval-cmds (list "less" #'vterm-less))
 
   ;; prefer vterm windows to act as dedicated popup windows to the right
   (add-to-list 'display-buffer-alist '("\\*vterm\\*"
