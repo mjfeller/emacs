@@ -18,6 +18,9 @@
 ;; along with this file.  If not, see <http://www.gnu.org/licenses/>.
 
 ;;; Commentary:
+;;
+;; OpenStreetMap integration for viewing maps within Emacs.
+;; Provides geographic visualization and navigation features.
 
 ;;; Code:
 

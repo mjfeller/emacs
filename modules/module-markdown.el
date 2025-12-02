@@ -1,4 +1,4 @@
-;;; module-markdown.el --- Configuration -*- lexical-binding: t; -*-
+;;; module-markdown.el --- Markdown editing configuration -*- lexical-binding: t; -*-
 
 ;; Author: Mark Feller <mark.feller@member.fsf.org>
 
@@ -18,6 +18,9 @@
 ;; along with this file.  If not, see <http://www.gnu.org/licenses/>.
 
 ;;; Commentary:
+;;
+;; Markdown editing support with syntax highlighting and preview capabilities.
+;; Configured for GitHub Flavored Markdown.
 
 ;;; Code:
 

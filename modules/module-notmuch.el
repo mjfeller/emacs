@@ -1,4 +1,4 @@
-;;; module-notmuch.el --- Configuration -*- lexical-binding: t; -*-
+;;; module-notmuch.el --- Notmuch email client configuration -*- lexical-binding: t; -*-
 
 ;; Author: Mark Feller <mark.feller@member.fsf.org>
 
@@ -18,9 +18,10 @@
 ;; along with this file.  If not, see <http://www.gnu.org/licenses/>.
 
 ;;; Commentary:
-
-;; Notmuch mail provides email indexing and searching based on tags. See
-;; https://notmuchmail.org/
+;;
+;; Notmuch email client configuration for fast email search and tagging.
+;; Operates directly on Maildir format, providing efficient email management.
+;; See https://notmuchmail.org/ for more information.
 
 ;;; Code:
 

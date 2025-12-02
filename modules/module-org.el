@@ -1,4 +1,4 @@
-;;; module-org.el --- Configuration -*- lexical-binding: t; -*-
+;;; module-org.el --- Org mode configuration -*- lexical-binding: t; -*-
 
 ;; Author: Mark Feller <mark.feller@member.fsf.org>
 

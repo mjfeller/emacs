@@ -1,4 +1,4 @@
-;;; module-git.el --- Configuration -*- lexical-binding: t; -*-
+;;; module-git.el --- Git integration configuration -*- lexical-binding: t; -*-
 
 ;; Author: Mark Feller <mark.feller@member.fsf.org>
 
@@ -18,6 +18,9 @@
 ;; along with this file.  If not, see <http://www.gnu.org/licenses/>.
 
 ;;; Commentary:
+;;
+;; Git integration using Magit and related packages.
+;; Provides version control interface, diff viewing, and git operations.
 
 ;;; Code:
 

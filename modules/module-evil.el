@@ -1,4 +1,4 @@
-;;; module-evil.el --- Configuration -*- lexical-binding: t; -*-
+;;; module-evil.el --- Evil mode (Vi keybindings) configuration -*- lexical-binding: t; -*-
 
 ;; Author: Mark Feller <mark.feller@member.fsf.org>
 
@@ -18,6 +18,9 @@
 ;; along with this file.  If not, see <http://www.gnu.org/licenses/>.
 
 ;;; Commentary:
+;;
+;; Configuration for Evil mode, providing Vi/Vim-like modal editing in Emacs.
+;; Includes key bindings and integration with various modes.
 
 ;;; Code:
 

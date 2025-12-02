@@ -1,4 +1,4 @@
-;;; module-ledger.el --- Configuration -*- lexical-binding: t; -*-
+;;; module-ledger.el --- Ledger mode finance tracking configuration -*- lexical-binding: t; -*-
 
 ;; Author: Mark Feller <mark.feller@member.fsf.org>
 
@@ -18,6 +18,9 @@
 ;; along with this file.  If not, see <http://www.gnu.org/licenses/>.
 
 ;;; Commentary:
+;;
+;; Configuration for Ledger mode, a double-entry accounting system.
+;; Provides syntax highlighting and commands for managing financial records.
 
 ;;; Code:
 

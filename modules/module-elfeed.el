@@ -27,41 +27,41 @@
 
 ;;; Code:
 
-(defvar mjf/elfeed-ytdl-format
+(defvar mjf-elfeed-ytdl-format
   "bestvideo[height<=?720][fps<=?30]+bestaudio/best"
   "Video and audio format for downloaded youtube content")
 
-(defvar mjf/ytdl-audo-format
+(defvar mjf-ytdl-audio-format
   "--extract-audio --audio-quality 0 --audio-format flac"
   "Youtube Download audio format flags")
 
-(defun mjf/play-video-at-point ()
+(defun mjf-play-video-at-point ()
   "Play the link at point with mpv"
   (interactive)
   (shell-command (format "mpv --ytdl-format='%s' '%s' &"
-                         mjf/elfeed-ytdl-format
+                         mjf-elfeed-ytdl-format
                          (thing-at-point 'url))))
 
-(defun mjf/ytdl-audio (url)
+(defun mjf-ytdl-audio (url)
   "Download a youtube video as audio"
   (let ((default-directory "~/Downloads"))
     (async-shell-command (format "youtube-dl %s '%s'"
-                                 mjf/ytdl-audo-format
+                                 mjf-ytdl-audio-format
                                  url))))
 
-(defun mjf/yt-channel-feed (channel)
+(defun mjf-yt-channel-feed (channel)
   "Create an elfeed feed for a given YouTube channel"
   (let ((feed (format "https://www.youtube.com/feeds/videos.xml?channel_id=%s"
                       channel)))
     `(,feed youtube)))
 
-(defun mjf/yt-playlist-feed (playlist)
+(defun mjf-yt-playlist-feed (playlist)
   "Create an elfeed feed for a given YouTube playlist"
   (let ((feed (format "https://www.youtube.com/feeds/videos.xml?playlist_id=%s"
                       playlist)))
     `(,feed youtube)))
 
-(defun mjf/elfeed-search-download-audio ()
+(defun mjf-elfeed-search-download-audio ()
   "Visit the current entry in your browser using `browse-url'.
 If there is a prefix argument, visit the current entry in the
 browser defined by `browse-url-generic-program'."
@@ -70,7 +70,7 @@ browser defined by `browse-url-generic-program'."
     (cl-loop for entry in entries
              do (elfeed-untag entry 'unread)
              when (elfeed-entry-link entry)
-             do (mjf/ytdl-audio it))
+             do (mjf-ytdl-audio it))
     (mapc #'elfeed-search-update-entry entries)
     (unless (or elfeed-search-remain-on-entry (use-region-p))
       (forward-line))))
@@ -78,9 +78,9 @@ browser defined by `browse-url-generic-program'."
 (use-package elfeed
   :bind
   (:map elfeed-show-mode-map
-        ("C-c o" . mjf/play-video-at-point))
+        ("C-c o" . mjf-play-video-at-point))
   (:map elfeed-search-mode-map
-        ("a" . mjf/elfeed-search-download-audio))
+        ("a" . mjf-elfeed-search-download-audio))
 
   :config
   (setq elfeed-db-directory "~/.local/share/elfeed")

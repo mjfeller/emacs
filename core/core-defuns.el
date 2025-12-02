@@ -34,10 +34,12 @@
   (forward-word (+ arg 1)))
 
 (defun untabify-buffer ()
+  "Convert all tabs in the buffer to spaces."
   (interactive)
   (untabify (point-min) (point-max)))
 
 (defun indent-buffer ()
+  "Indent the entire buffer according to the current major mode."
   (interactive)
   (indent-region (point-min) (point-max)))
 

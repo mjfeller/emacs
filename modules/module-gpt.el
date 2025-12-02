@@ -1,4 +1,4 @@
-;;; module-gpt.el --- Configuration -*- lexical-binding: t; -*-
+;;; module-gpt.el --- AI agent integration configuration -*- lexical-binding: t; -*-
 
 ;; Author: Mark Feller <mark.feller@member.fsf.org>
 
@@ -142,3 +142,5 @@
     (evil-set-initial-state 'agent-shell-mode 'emacs)))
 
 (provide 'module-gpt)
+
+;;; module-gpt.el ends here
