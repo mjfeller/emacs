@@ -32,9 +32,9 @@
 (require 'module-emacs-lisp)
 (require 'module-evil)
 (require 'module-git)
+(require 'module-gpt)
 (require 'module-lang)
 (require 'module-ledger)
-(require 'module-notmuch)
 (require 'module-org)
 (require 'module-osm)
 

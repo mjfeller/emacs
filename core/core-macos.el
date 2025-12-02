@@ -38,6 +38,7 @@
     (set-fontset-font t 'unicode "Apple Color Emoji" nil 'prepend))
 
 (setq exec-path '("/Users/mfeller/Development/go/bin"
+                  "/Users/mfeller/.config/nvm/versions/node/v18.20.8/bin"
                   "/Users/mfeller/.nix-profile/bin"
                   "/etc/profiles/per-user/mfeller/bin"
                   "/run/current-system/sw/bin"

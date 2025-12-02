@@ -43,6 +43,10 @@
 (add-to-list 'load-path modules-dir)
 (add-to-list 'load-path lisp-dir)
 
+;; add all subdirectories in lisp-dir to load-path
+(let ((default-directory lisp-dir))
+  (normal-top-level-add-subdirs-to-load-path))
+
 (setq use-package-compute-statistics t)
 (setq gc-cons-threshold (* 1000 1000 50))                    ; reduce frequency of garbage collection
 (setq gc-cons-percentage 0.1)
