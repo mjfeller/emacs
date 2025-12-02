@@ -29,7 +29,6 @@
 
 (message "Loading modules...")
 
-(require 'module-emacs-lisp)
 (require 'module-evil)
 (require 'module-git)
 (require 'module-gpt)

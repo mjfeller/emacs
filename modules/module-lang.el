@@ -21,6 +21,7 @@
 ;;
 ;; Provides configuration for programming languages including:
 ;; - CSV
+;; - Emacs Lisp
 ;; - Go (tree-sitter)
 ;; - Nix (tree-sitter)
 ;; - Java (tree-sitter)
@@ -35,6 +36,7 @@
 ;; - Custom compilation commands
 ;; - Tree-sitter based syntax highlighting where available
 ;; - Consistent keybindings across languages
+;; - Emacs Lisp specific tooling (paren-face, macrostep)
 
 ;;; Code:
 
@@ -65,6 +67,16 @@
 ;; csv
 
 (use-package csv-mode)
+
+;; emacs-lisp
+
+(use-package paren-face
+  :config
+  (global-paren-face-mode t)
+  (set-face-attribute 'parenthesis nil :inherit 'line-number))
+
+(use-package macrostep
+  :defer t)
 
 ;; go
 

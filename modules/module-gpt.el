@@ -18,6 +18,9 @@
 ;; along with this file.  If not, see <http://www.gnu.org/licenses/>.
 
 ;;; Commentary:
+;;
+;; This module configures agent-shell for interacting with AI agents.
+;; Provides integration with Claude Code, Cursor, Gemini, and other AI assistants.
 
 ;;; Code:
 
@@ -112,7 +115,11 @@
   ;;     (headers . ()))))
   
   (agent-shell-anthropic-claude-command '("claude-code-acp"))
-  (agent-shell-anthropic-claude-environment nil)
+  (agent-shell-anthropic-claude-environment
+   ;; Set XDG_CONFIG_HOME and XDG_DATA_HOME to use cache directory
+   ;; This prevents Claude Code from creating directories in ~/.config/emacs
+   (list (concat "XDG_CONFIG_HOME=" (expand-file-name "~/.cache/emacs/claude-config"))
+         (concat "XDG_DATA_HOME=" (expand-file-name "~/.cache/emacs/claude-data"))))
   
   :bind (("C-c a" . agent-shell)           ; Start/reuse agent shell
          ("C-c A" . agent-shell-anthropic-start-claude-code) ; Start Claude Code
