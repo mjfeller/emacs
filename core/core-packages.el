@@ -307,7 +307,7 @@
   :bind (("s-U" . vterm-other-window)
 
          :map vterm-mode-map
-         ("M-P" . mjf/pash-copy))
+         ("M-P" . mjf-pash-copy))
 
   :hook
   (vterm-mode . subword-mode)
